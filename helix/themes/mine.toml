@@ -1,0 +1,39 @@
+inherits = "catppuccin_mocha"
+
+
+#  tree-sitter-highlight-name
+#  Shows the highlight name of whatever the cursor is over :)
+
+"diagnostic.error" = { underline = { color = "red", style="curl" } }
+
+"info" = { bg = "sky", fg = "mantle" }
+
+# Comments
+"comment" = { fg = "subtext0", bg = "mantle", modifiers = ["italic"] }
+"comment.block.documentation" = { fg="subtext0", bg="base" }
+"comment.documentation" = { fg="subtext1", bg="base" }
+"comment.go" = {fg="red"}
+
+# Comment warnings
+"warning" = { bg = "yellow", fg = "mantle" }
+
+# URLs in comments
+"markup.link.url" = { fg = "lavender", underline = { color = "lavender", style = "line" } }
+
+# function(parameters)
+"variable.parameter" = { fg = "text", underline = { color = "text", style = "dotted" } }
+
+# import "namespace"
+"namespace" = { fg = "text", modifiers = ["bold"] }
+
+# Bufferline active tab
+"ui.bufferline.active" = { fg = "mauve", bg = "base" }
+
+# I honestly have no clue :(
+"keyword.control.conditional" = "mauve"
+
+# module expression_statement string string_content
+"meta.string" = "orange"
+"string.documentation" = "red"
+"string.doc" = "black"
+"string.block.documentation" = "purple"

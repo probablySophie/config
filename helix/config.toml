@@ -1,0 +1,87 @@
+
+
+# theme = "default"
+theme = "mine"
+
+[editor]
+
+# Show bufferline tabs
+bufferline = "multiple"
+undercurl = true
+# Disable smart tab
+smart-tab = {enable = false}
+color-modes = true
+
+
+[editor.soft-wrap] # Soft-wrapped lines, my beloved
+enable = true
+
+[editor.indent-guides] # The nice little indent lines
+render = true
+character = "┊"
+
+
+[editor.inline-diagnostics] # Funky inline diagnostics
+cursor-line = "hint"
+other-lines = "error"
+prefix-len = 4
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.lsp]
+auto-signature-help = true  # Pops up the docs when entering arguments into a function call
+display-messages = true     # Displays LSP config & log messages
+display-inlay-hints = false
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-modification-indicator", "version-control"]
+center = ["read-only-indicator"]
+right = ["diagnostics", "position", "position-percentage", "file-encoding"]
+
+
+#
+# KEY REBINDS
+#
+# https://docs.helix-editor.com/keymap.html
+# https://docs.helix-editor.com/master/remapping.html
+
+[keys.insert]
+C-s = ":w"                         # Ctrl-S      Save
+C-left = "goto_previous_buffer"    # Ctrl-left  prev_buffer
+C-right = "goto_next_buffer"       # Ctrl-right next_buffer
+A-h = "signature_help"
+#C-l = [":new", ":insert-output nap", ":redraw"]
+
+[keys.normal]
+C-s = ":w"                         # Ctrl-S     Save
+C-o = "file_picker"                # Ctrl-O     Open another file
+C-left = "goto_previous_buffer"    # Ctrl-left  prev_buffer
+C-right = "goto_next_buffer"       # Ctrl-right next_buffer
+r = "redo"                         # R          redo
+S-k = "hover"                      # Shift-K    LSP Hover
+S-l = "code_action"                # Shift-L    LSP Code Actions
+S-r = "rename_symbol"              # Shift-R    LSP Rename
+S-w = ":buffer-close"              # Shift-W    Close Buffer
+S-h = "signature_help"
+
+# Toggle whitespace
+space.x = ":toggle whitespace.render all none"
+
+space.t.s = ":tree-sitter-scopes"
+space.t.h = ":tree-sitter-highlight-name"
+space.t.t = ":tree-sitter-subtree"
+
+[keys.select]
+# Surround selected text!
+"("  = "@ms("  # With ()
+"["  = "@ms["  # With []
+"{"  = "@ms{"  # With {}
+"\"" = "@ms\"" # With ""
+"'"  = "@ms'"  # With ''
+

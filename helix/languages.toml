@@ -1,0 +1,115 @@
+
+# Check languages out from here:
+# https://github.com/helix-editor/helix/wiki/Language-Server-Configurations
+
+# More info here:
+# https://docs.helix-editor.com/languages.html
+
+[[language]]
+name = "rust"
+formatter = { command = "rustfmt" }
+auto-format = false
+language-servers = [ "rust-analyzer" ]#, "harper-ls" ] # I think harper is misbehaving
+indent = { tab-width = 4, unit = "\t" }
+
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+
+[language-server.rust-analyzer.config]
+checkOnSave = { command = "clippy", extraArgs = [
+  "--",
+  "-W",
+  "clippy::pedantic",
+] }
+cargo = { allFeatures = true }
+procMacro = { enable = true }
+
+[[language]]
+name = "latex"
+language-servers = [ "texlab", "harper-ls" ]
+indent = { tab-width = 4, unit="\t" }
+
+[language-server.texlab]
+command = "texlab"
+
+[language-server.texlab.config.texlab.build]
+onSave = true
+executable = "tectonic"
+args = [
+  "-X",
+  "compile",
+  "%f",
+]
+[language-server.texlab.config.texlab.chktex]
+onOpenAndSave = true
+onEdit = true
+
+[language.debugger]
+name = "lldb-vscode"
+transport = "stdio"
+command = "lldb-vscode"
+
+# How to set up /usr/local/etc/lldb_vscode_rustc_primer.py
+# https://github.com/helix-editor/helix/wiki/Debugger-Configurations#configuration-for-rust
+[[language.debugger.templates]]
+name = "binary"
+request = "launch"
+completion = [ { name = "binary", completion = "filename" } ]
+args = { program = "{0}", initCommands = [ "command script import /usr/local/etc/lldb_vscode_rustc_primer.py" ] }
+
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["fmt", "-"] }
+indent = { tab-width = 4, unit = "\t" }
+
+[[language]]
+name = "python"
+language-servers = [ "pyright"] #, "harper-ls" ]
+indent = { tab-width = 4, unit = "    " }
+
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--pythonpath", "/usr/bin/python3.11", "--stdio"]
+
+[[language]]
+name = "json"
+language-servers = [ "vscode-json-language-server" ]
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "markdown"
+language-servers = [ "marksman", "harper-ls" ]
+indent = { tab-width = 4, unit = "\t" }
+
+[language-server.harper-ls]
+command = "harper-ls"
+args = ["--stdio"]
+
+[language-server.harper-ls.config.harper-ls.linters]
+spaces = false
+
+[[language]]
+name = "javascript"
+language-servers = [ "typescript-language-server" ]
+indent = { tab-width = 4, unit = "\t" }
+
+# [language-server.typescript-language-server]
+# module = "nodenext"
+# exclude = ["node_modules"]
+
+[[language]]
+name = "bash"
+language-servers = [ "bash-language-server" ]
+indent = { tab-width = 4, unit = "\t" }
+
+[[language]]
+name = "html"
+language-servers = ["vscode-html-language-server"] # vscode-langservers-extracted
+indent = { tab-width = 4, unit = "\t" }
+auto-format = false
+
+[[language]]
+name = "css"
+language-servers = ["vscode-css-language-server"] # vscode-langservers-extracted
+indent = { tab-width = 4, unit = "\t" }
+
