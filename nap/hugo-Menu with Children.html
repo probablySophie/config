@@ -1,0 +1,28 @@
+<ul>
+{{/*<!-- Sneaky partial that swaps out the title if the page has a custom name menu parameter -->*/}}
+{{ define "partials/menu/named-item.html" }}
+	{{ $name := .Name }}
+	{{ if isset .Params "name" }}{{ $name = .Params.name }}{{ end }}
+	<li><a href="{{ .URL }}">{{ $name }}</a></li>
+{{ end }}
+
+{{/*<!-- Range through the menu -->*/}}
+{{ range .Site.Menus.main }}
+	{{/*<!-- If the item has children (handled by Hugo) -->*/}}
+	{{ if .HasChildren }}
+		<div class="submenu">
+			{{/*<!-- Add the item as normal (ish) -->*/}}
+			{{ partial "menu/named-item" . }}
+			<ul>
+				{{/*<!-- Range through the children -->*/}}
+				{{ range .Children }}
+					{{ partial "menu/named-item" . }}
+				{{ end }}
+			</ul>
+		</div>
+	{{ else }}
+		{{/*<!-- Just a regular childless menu item -->*/}}
+		{{ partial "menu/named-item" . }}
+	{{ end }}
+{{ end }}
+</ul>

@@ -1,0 +1,1 @@
+$EDITOR "file_name"

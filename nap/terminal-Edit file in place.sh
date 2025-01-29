@@ -1,0 +1,1 @@
+sed -i "s/STRNG_FROM/STRING_TO/g" $FILE_NAME

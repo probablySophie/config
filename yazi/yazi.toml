@@ -1,0 +1,8 @@
+# yazi.toml
+[manager]
+show_hidden = false
+linemode = "size_and_mtime"
+
+[preview]
+image_delay = 10
+
