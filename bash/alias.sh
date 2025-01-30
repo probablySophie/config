@@ -77,6 +77,14 @@ then
 	# Nothing
 fi
 
+if command -v devcontainer &> /dev/null
+then
+	if command -v podman &> /dev/null
+	then
+		alias devc="devcontainer up --workspace-folder . --docker-path podman"
+	fi
+fi
+
 descriptive_alias 'pysource' "source .venv/bin/activate" "Source .venv/bin/active (for python)"
 
 descriptive_alias 'llama' "docker exec -it ollama ollama run llama3" "Run llama3 using ollama"
