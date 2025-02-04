@@ -77,13 +77,7 @@ then
 	# Nothing
 fi
 
-if command -v devcontainer &> /dev/null
-then
-	if command -v podman &> /dev/null
-	then
-		alias devc="devcontainer up --workspace-folder . --docker-path podman"
-	fi
-fi
+alias dev="devcontainer up --workspace-folder . --docker-path podman"
 
 descriptive_alias 'pysource' "source .venv/bin/activate" "Source .venv/bin/active (for python)"
 
@@ -100,3 +94,4 @@ _weather() { curl "https://wttr.in/$1?format=%l:+%C+%t+%x\nFeels+like+%f\nUV+ind
 descriptive_alias "weather" '_weather' "Get the current weather in \$1!"
 
 descriptive_alias "escape_spaces" "sed -e 's/ /\\\\\\ /g' -e 's/&/\\&/g'" "Escape spaces from the piped in input"
+
