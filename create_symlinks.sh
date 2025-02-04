@@ -13,9 +13,9 @@ function bulk_symlink
 	for file in "${files[@]}"; do
 		file_name="${file##*/}";
 		printf "\t$file_name\n";
-		ln -s "$file" "$2$file_name";
+		ln -sf $file $2$file_name;
 	done
 }
 
-bulk_symlink "./config/*" "~/.config/"
-bulk_symlink "./local_share/*" "~/.local/share/"
+bulk_symlink "$PWD/config/*" "$HOME/.config/"
+bulk_symlink "$PWD/local_share/*" "$HOME/.local/share/"
