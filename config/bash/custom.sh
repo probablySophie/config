@@ -54,6 +54,11 @@ if command -v yazi &> /dev/null; then
 	}
 fi
 
+# ~ ~ ~ ~ Windows Subsystem for Linux ~ ~ ~ ~
+
+if [[ -f "/etc/wsl.conf" ]]; then
+	export BROWSER="wslview" # This stops issues with `gh auth login`
+fi
 
 # ~ ~ ~ ~ EXPORTS ~ ~ ~ ~
 
