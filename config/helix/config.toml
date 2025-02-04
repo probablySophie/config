@@ -4,14 +4,11 @@
 theme = "mine"
 
 [editor]
-
-# Show bufferline tabs
-bufferline = "multiple"
+bufferline = "multiple" # Show bufferline tabs
 undercurl = true
-# Disable smart tab
-smart-tab = {enable = false}
+smart-tab = {enable = false} # Disable smart tab
 color-modes = true
-
+true-color = true
 
 [editor.soft-wrap] # Soft-wrapped lines, my beloved
 enable = true
