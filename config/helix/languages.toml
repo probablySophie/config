@@ -168,3 +168,4 @@ file-types = [".env"]
 [language-server.tailwindcss-ls]
 command = "tailwindcss-language-server"
 args = ["--stdio"]
+
