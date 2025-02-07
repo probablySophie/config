@@ -66,6 +66,7 @@ S-l = "code_action"                # Shift-L    LSP Code Actions
 S-r = "rename_symbol"              # Shift-R    LSP Rename
 S-w = ":buffer-close"              # Shift-W    Close Buffer
 S-h = "signature_help"
+C-r = [":reload-all", ":sh printf 'Reloaded'"]
 
 # Toggle whitespace
 space.x = ":toggle whitespace.render all none"
