@@ -67,6 +67,7 @@ S-r = "rename_symbol"              # Shift-R    LSP Rename
 S-w = ":buffer-close"              # Shift-W    Close Buffer
 S-h = "signature_help"
 C-r = [":reload-all", ":sh printf 'Reloaded'"]
+g = {f = ["goto_file", ":redraw"]}
 
 # Toggle whitespace
 space.x = ":toggle whitespace.render all none"
