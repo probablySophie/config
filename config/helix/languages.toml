@@ -169,3 +169,18 @@ file-types = [".env"]
 command = "tailwindcss-language-server"
 args = ["--stdio"]
 
+[[language]]
+name = "scss"
+file-types = ["scss"]
+language-servers = ["vscode-css-language-server"]
+indent = { tab-width = 4, unit = "\t" }
+
+[language-server.astro-ls]
+command = "astro-ls"
+args = ["--stdio"]
+config = {typescript = {tsdk = "/home/sophie/.deno/bin/typescript"}, environment = "node"}
+
+[[language]]
+name = "astro"
+indent = { tab-width = 4, unit = "\t" }
+language-servers = [ "astro-ls" ]
