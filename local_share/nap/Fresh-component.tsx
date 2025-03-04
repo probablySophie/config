@@ -5,7 +5,7 @@ interface YourComponentProps
 
 export default function YourComponent(props: YourComponentProps)
 {
-	return (
-		<p> This is my example component! </p>
-	);
+	return <>
+		{/* TODO: */}
+	</>;
 }
