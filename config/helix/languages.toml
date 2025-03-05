@@ -178,7 +178,7 @@ indent = { tab-width = 4, unit = "\t" }
 [language-server.astro-ls]
 command = "astro-ls"
 args = ["--stdio"]
-config = {typescript = {tsdk = "/home/sophie/.deno/bin/typescript"}, environment = "node"}
+config = {typescript = {tsdk = "/home/sophie/.cache/deno/npm/registry.npmjs.org/typescript/5.7.3/lib"}, environment = "node"}
 
 [[language]]
 name = "astro"
