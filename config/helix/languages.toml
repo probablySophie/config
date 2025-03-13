@@ -76,6 +76,12 @@ name = "json"
 language-servers = [ "vscode-json-language-server" ]
 indent = { tab-width = 4, unit = "    " }
 
+
+[[language]]
+name = "jsonc"
+language-servers = [ "vscode-json-language-server" ]
+indent = { tab-width = 4, unit = "    " }
+
 [[language]]
 name = "markdown"
 language-servers = [ "marksman", "harper-ls" ]
