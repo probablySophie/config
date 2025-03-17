@@ -15,6 +15,7 @@ add_source "welcome.sh"
 add_source "git.sh"
 add_source "completions.sh"
 add_source "wsl.sh"
+add_source "timezone.sh"
 
 
 export PATH=~/.local/bin:$PATH
