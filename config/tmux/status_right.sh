@@ -1,3 +1,7 @@
+# Source our timezone
+if [[ -f ~/.config/bash/timezone.sh ]]; then source ~/.config/bash/timezone.sh; fi
+
+# Human readable time
 function displaytime {
   local T=$1
   local D=$((T/60/60/24))
