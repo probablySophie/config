@@ -180,6 +180,7 @@ name = "scss"
 file-types = ["scss"]
 language-servers = ["vscode-css-language-server"]
 indent = { tab-width = 4, unit = "\t" }
+auto-format = false
 
 [language-server.astro-ls]
 command = "astro-ls"
