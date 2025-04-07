@@ -87,7 +87,7 @@ descriptive_alias 'llama' "docker exec -it ollama ollama run llama3" "Run llama3
 descriptive_alias 'codellama' "docker exec -it ollama ollama run codellama" "Run codellama using ollama"
 
 # Use less to view manual pages so we can SCROLLLLLL
-alias man "man --pager='less --mouse  --wheel-lines=3'"
+alias man="man --pager='less --mouse  --wheel-lines=3'"
 
 # ~ ~ ~ ~ CUSTOM COMMANDS ~ ~ ~ ~
 
