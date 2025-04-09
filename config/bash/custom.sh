@@ -18,9 +18,16 @@ add_source "wsl.sh"
 add_source "timezone.sh"
 add_source "podman_devcontainers.sh"
 
+# Make the timezone file if it doesn't exist.
+if [[ ! -f "$HOME/.config/bash/timezone.sh" ]]; then
+	printf "# Run `timedatectl list-timezones` to list all timezones\n"\
+"# You can grep for your country/city to find your exact timezone\n"\
+"TZ='UTC'" >> "$HOME/.config/bash/timezone.sh"
+fi
 
+# Add our local bin to the path
 export PATH=~/.local/bin:$PATH
-
+# Add our desktop files to the desktop files
 export PATH=$HOME/.applications/desktop_files:$PATH
 
 # ~ ~ ~ ~ SETTINGS ~ ~ ~ ~
