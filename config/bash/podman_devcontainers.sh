@@ -56,14 +56,23 @@ function dev
 			--name $IMAGE_NAME \
 			--interactive --tty \
 			--userns="keep-id" \
-			$PORTS \
+			$PORTS $2\
 			$IMAGE_NAME /bin/bash
 
+		return 0
+	fi
+
+	if [[ "$1" == "admin" ]]; then
+
+		podman container exec -itu 0 $IMAGE_NAME bash
+		
+		return 0
 	fi
 
 	printf \
-"\tbuild - Build the current directory's devcontainer\n"\
-"\trun   - Run the current directory's devcontainer\n";
+"\t${yellow}build${normal} - Build the current directory's devcontainer\n"\
+"\t${yellow}run${normal}   - Run the current directory's devcontainer\n"\
+"\t${yellow}admin${normal}   - Attach to the current directory's devcontainer as admin\n";
 
 	unset __get
 	unset __ports
