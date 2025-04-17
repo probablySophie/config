@@ -33,7 +33,8 @@ function dev
 	local MOUNT_DIR="$PWD"
 	local MOUNT_TO="$(__get ".workspaceFolder")"
 	local PORTS="$(__ports)"
-
+	local MOUNTS=$(__get ".mounts");
+	local MOUNT_STRING="";
 
 	if [[ "$1" == "build" ]]; then
 		printf "Building!\n";
@@ -48,11 +49,28 @@ function dev
 		return 0
 	fi
 
+	# Add a slash to MOUNT_TO if it doesn't already have one
+	if [[ "${MOUNT_TO: -1}" != "/" ]]; then local MOUNT_TO="${MOUNT_TO}/"; fi
+	# Add the current directory to MOUNT_TO so that we get workspaces/project_dir/
+	local MOUNT_TO="${MOUNT_TO}${PWD##*/}"
+
+	# Looping over array items
+	for item in $MOUNTS; do
+		if [[ ${#item} > 3 ]]; then
+			# Strip quotes
+			if [[ "${item: -1}" == '"' ]]; then item="${item: 0 : -1}"; fi
+			if [[ "${item:0:1}" == '"' ]]; then item="${item: 1 }"; fi
+
+			local MOUNT_STRING="${MOUNT_STRING} --mount=${item}"
+		fi
+	done
+	printf "${MOUNT_STRING}\n";
+
 	if [[ "$1" == "run" ]]; then
 
 		podman run \
 			--rm \
-			--mount=type=bind,src="$MOUNT_DIR",dst="$MOUNT_TO" \
+			--mount=type=bind,src="$MOUNT_DIR",dst="$MOUNT_TO" $MOUNT_STRING\
 			--name $IMAGE_NAME \
 			--interactive --tty \
 			--userns="keep-id" \
