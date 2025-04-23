@@ -128,7 +128,7 @@ typescript = { tsdk = "./node_modules/typescript/lib" }
 [[language]]
 name = "javascript"
 roots = ["deno.json", "deno.jsonc"]
-file-types = ["js"]
+file-types = ["js", "mjs"]
 language-servers = ["deno-lsp", "tailwindcss-ls"]
 indent = { tab-width = 4, unit = "\t" }
 
