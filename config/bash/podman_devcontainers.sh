@@ -28,7 +28,7 @@ function dev
 		printf "$PORT_STRING"
 	}
 	
-	local IMAGE_NAME="$(__get ".name" | tr '[:upper:]' '[:lower:]')"
+	local IMAGE_NAME="$(__get ".name" | tr '[:upper:]' '[:lower:]' | sed 's/ //g')"
 	local DOCKERFILE="$(__get ".build.dockerfile")"
 	local MOUNT_DIR="$PWD"
 	local MOUNT_TO="$(__get ".workspaceFolder")"
@@ -56,7 +56,7 @@ function dev
 
 	# Looping over array items
 	for item in $MOUNTS; do
-		if [[ ${#item} > 3 ]]; then
+		if [[ ${#item} > 3 ]] && [[ "$item" -ne "" ]]; then
 			# Strip quotes
 			if [[ "${item: -1}" == '"' ]]; then item="${item: 0 : -1}"; fi
 			if [[ "${item:0:1}" == '"' ]]; then item="${item: 1 }"; fi
