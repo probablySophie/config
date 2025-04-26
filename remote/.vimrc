@@ -8,14 +8,14 @@ set encoding=utf-8
 set laststatus=1
 
 set number        " Show line numbers
-set linebreak     " wrap
+set linebreak     " wrap text
 set showmatch     " highlight matching brackets
-set visualbell    " flash if bell
+set visualbell    " flash if bell (and don't beep)
 set hlsearch      " highlights all search matches
 set smartcase     " fancy case searching
 set gdefault      " all matches in line
-set ignorecase    " Ignore case
-set incsearch     " Not sure what this does
+set ignorecase    " Ignore case in searches
+set incsearch     " Searches as you type?
 set autoindent    " Auto... indent...
 set smartindent   " ...?
 set shiftwidth    " tabwidth
