@@ -3,6 +3,18 @@ function dev
 {
 	if [[ ! -f ".devcontainer/devcontainer.json" ]]; then
 		printf "No .devcontainer/devcontainer.json found!\n";
+
+		local INPUT=""
+		read -p "Make one? (y/N) " INPUT
+		
+		if [[ "$(printf "%.1s" "$INPUT" | tr '[:upper:]' '[:lower:]')" == "y" ]]; then
+			mkdir -p ".devcontainer";
+			printf "{\n\"%s\": \"%s\"\n}" \
+				"\$schema" \
+				"https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainer.base.schema.json" \
+				>> ".devcontainer/devcontainer.json";
+		fi
+		
 		return 0
 	fi
 
@@ -35,6 +47,17 @@ function dev
 	local PORTS="$(__ports)"
 	local MOUNTS=$(__get ".mounts");
 	local MOUNT_STRING="";
+	local MOUNT_COMMAND="";
+
+	if [[ "$DOCKERFILE" != "null" ]]; then
+		local MOUNT_COMMAND="$(grep "CMD" .devcontainer/$DOCKERFILE)"
+		if [[ "$MOUNT_COMMAND" != "" ]]; then
+			MOUNT_COMMAND="$(printf "$MOUNT_COMMAND" | sed -e 's/CMD //g' -e 's/\(\[\|]\|"\)//g')"
+		fi
+	fi
+	if [[ "$MOUNT_COMMAND" == "" ]]; then
+		MOUNT_COMMAND="/bin/bash"
+	fi
 
 	if [[ "$1" == "build" ]]; then
 		printf "Building!\n";
@@ -64,7 +87,6 @@ function dev
 			local MOUNT_STRING="${MOUNT_STRING} --mount=${item}"
 		fi
 	done
-	printf "${MOUNT_STRING}\n";
 
 	if [[ "$1" == "run" ]]; then
 
@@ -75,7 +97,7 @@ function dev
 			--interactive --tty \
 			--userns="keep-id" \
 			$PORTS $2\
-			$IMAGE_NAME /bin/bash
+			$IMAGE_NAME $MOUNT_COMMAND
 
 		return 0
 	fi
@@ -84,6 +106,19 @@ function dev
 
 		podman container exec -itu 0 $IMAGE_NAME bash
 		
+		return 0
+	fi
+
+	if [[ "$1" == "test" ]]; then
+		printf "%s = %s\n" "IMAGE_NAME" "$IMAGE_NAME";
+		printf "%s = %s\n" "DOCKERFILE" "$DOCKERFILE";
+		printf "%s = %s\n" "MOUNT_DIR" "$MOUNT_DIR";
+		printf "%s = %s\n" "MOUNT_TO" "$MOUNT_TO";
+		printf "%s = %s\n" "PORTS" "$PORTS";
+		printf "%s = %s\n" "MOUNTS" "$MOUNTS";
+		printf "%s = %s\n" "MOUNT_STRING" "$MOUNT_STRING";
+		printf "%s = %s\n" "MOUNT_COMMAND" "$MOUNT_COMMAND";
+
 		return 0
 	fi
 
