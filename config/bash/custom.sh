@@ -36,8 +36,7 @@ bind -s 'set completion-ignore-case on' &> /dev/null
 
 # Starship
 
-if command -v starship &> /dev/null
-then
+if command -v starship &> /dev/null; then
 	eval "$(starship init bash)"
 else
 	echo "${red}starship prompt not found${normal}"
