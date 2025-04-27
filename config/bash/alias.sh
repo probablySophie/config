@@ -29,8 +29,7 @@ descriptive_alias()
 # Useful for overwriting default commands with funky drop-in replacements
 safealias_command() # safealias_command COMMAND_TO_CHECK ALIAS
 {
-	if command -v $1 &> /dev/null
-	then
+	if command -v $1 &> /dev/null ; then
 		alias $2="${1}"
 	fi
 	if [[ $3 ]]; then
@@ -61,8 +60,8 @@ descriptive_alias "dus" "du -sh --apparent-size * | sort -hr" "Get the sizes of 
 safealias_command btm top
 
 # Ls → Eza
-if command -v eza &> /dev/null	# Is exa installed?
-then # Yes
+# Eza is a forked alive version of Exa which is just a nicer ls
+if command -v eza &> /dev/null ; then
 	descriptive_alias 'll' 'eza -lF --icons' "List non-hidden files in PWD along with all the information you could ever need"
 	descriptive_alias 'la' 'eza -aF --icons' "List _all_ files in PWD"
 	alias ls='eza --icons'
@@ -72,8 +71,7 @@ else # No
 fi
 
 # Cat → Bat
-if command -v bat &> /dev/null
-then
+if command -v bat &> /dev/null ; then
 	alias cat='bat'
 #else
 	# Nothing
