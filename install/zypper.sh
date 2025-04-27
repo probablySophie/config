@@ -8,6 +8,7 @@ if command -v zypper &> /dev/null ; then
 		tmux # TMUX!
 		make gcc cmake # friends for installing & building software
 		libnotify-tools # For commandline notifications
+		podman # Container management
 	)
 	"${CMD[@]}"
 fi
