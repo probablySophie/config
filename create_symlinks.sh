@@ -13,7 +13,7 @@ function bulk_symlink
 	for file in "${files[@]}"; do
 		file_name="${file##*/}";
 		printf "\t$file_name\n";
-		ln -sf $file $2$file_name;
+		ln -sf $file $2;
 	done
 }
 
