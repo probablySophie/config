@@ -19,6 +19,7 @@ custom_command()
 		CUSTOM_COMMANDS_LEN=${#1};
 	fi	
 }
+custom_command "?" "This command!";
 
 printf_about_command()
 {
