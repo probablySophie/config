@@ -1,0 +1,9 @@
+
+# There should also be a ~/.local/share/simple_package_manager/packages.toml
+# That has the current system's install state for them & version & such
+
+[a]
+name = "AA" # A nice display name for me
+packageType = "cargo" # "executable" | "cargo" | "source" | "flatpak"
+ref = "starship" # The package itself
+args = "--locked" # Any fancyness when downloading the package
