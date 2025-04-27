@@ -79,8 +79,8 @@ fi
 
 descriptive_alias 'pysource' "source .venv/bin/activate" "Source .venv/bin/active (for python)"
 
-descriptive_alias 'llama' "docker exec -it ollama ollama run llama3" "Run llama3 using ollama"
-descriptive_alias 'codellama' "docker exec -it ollama ollama run codellama" "Run codellama using ollama"
+# descriptive_alias 'llama' "docker exec -it ollama ollama run llama3" "Run llama3 using ollama"
+# descriptive_alias 'codellama' "docker exec -it ollama ollama run codellama" "Run codellama using ollama"
 
 # Use less to view manual pages so we can SCROLLLLLL
 alias man="man --pager='less --mouse  --wheel-lines=3'"
