@@ -1,12 +1,14 @@
 
+
 function dev
 {
 	if [[ ! -f ".devcontainer/devcontainer.json" ]]; then
-		printf "No .devcontainer/devcontainer.json found!\n";
+		printf "No .devcontainer/devcontainer.json found!\n\n";
+		printf "Use dev make to create a devcontainer file with schema preinserted\n";
+		return 0
+	fi
 
-		local INPUT=""
-		read -p "Make one? (y/N) " INPUT
-		
+	if [[ "$1" == "make" ]]; then
 		if [[ "$(printf "%.1s" "$INPUT" | tr '[:upper:]' '[:lower:]')" == "y" ]]; then
 			mkdir -p ".devcontainer";
 			printf "{\n\"%s\": \"%s\"\n}" \
@@ -14,7 +16,6 @@ function dev
 				"https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainer.base.schema.json" \
 				>> ".devcontainer/devcontainer.json";
 		fi
-		
 		return 0
 	fi
 
@@ -103,9 +104,11 @@ function dev
 	fi
 
 	if [[ "$1" == "admin" ]]; then
-
-		podman container exec -itu 0 $IMAGE_NAME bash
-		
+		podman container exec -itu 0 $IMAGE_NAME $MOUNT_COMMAND
+		return 0
+	fi
+	if [[ "$1" == "attach" ]]; then
+		podman container exec -it  $IMAGE_NAME $MOUNT_COMMAND
 		return 0
 	fi
 
@@ -125,7 +128,9 @@ function dev
 	printf \
 "\t${yellow}build${normal} - Build the current directory's devcontainer\n"\
 "\t${yellow}run${normal}   - Run the current directory's devcontainer\n"\
-"\t${yellow}admin${normal}   - Attach to the current directory's devcontainer as admin\n";
+"\t${yellow}admin${normal}   - Attach to the current directory's devcontainer as admin\n"\
+"\t${yellow}attach${normal}   - Attach to the current directory's devcontainer as the defualt user\n"\
+"\t${yellow}make${normal}   - Make .devcontainer and .devcontainer/devcontainer.json\n";
 
 	unset __get
 	unset __ports

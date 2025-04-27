@@ -16,7 +16,12 @@ add_source "git.sh"
 add_source "completions.sh"
 add_source "wsl.sh"
 add_source "timezone.sh"
-add_source "podman_devcontainers.sh"
+
+# This one requires we have podman installed
+if command -v podman &> /dev/null ; then
+	add_source "podman_devcontainers.sh"
+fi
+
 
 # Make the timezone file if it doesn't exist.
 if [[ ! -f "$HOME/.config/bash/timezone.sh" ]]; then
