@@ -20,7 +20,8 @@ args = "--locked" # Any fancyness when downloading the package
 #im.riot.Riot
 #org.kde.krita
 #io.podman_desktop.PodmanDesktop
-
+#org.kde.kate
+#org.kde.kpat
 
 # Cargo
 # cargo install starship --locked # starship makes our bash prompt prettier
