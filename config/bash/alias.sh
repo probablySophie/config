@@ -95,3 +95,10 @@ descriptive_alias "weather" '_weather' "Get the current weather in \$1!"
 
 descriptive_alias "escape_spaces" "sed -e 's/ /\\\\\\ /g' -e 's/&/\\&/g'" "Escape spaces from the piped in input"
 
+# TUI clone one of my github repos
+# Requres fzf for the TUI niceness & gh for the github part
+if command -v fzf &> /dev/null ; then
+	if command -v gh &> /dev/null ; then
+		descriptive_alias "clone" "gh repo list -L 100 | fzf | sed 's/[ \t].*//g' | xargs -I {} gh repo clone {}" "Clone one of the logged in gh account's repos from github into the current folder (TUI/you pick)"
+	fi
+fi
