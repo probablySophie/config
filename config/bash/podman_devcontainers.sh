@@ -49,6 +49,7 @@ function dev
 	local MOUNTS=$(__get ".mounts");
 	local MOUNT_STRING="";
 	local MOUNT_COMMAND="";
+	local CONTAINER_USER="$(__get ".containerUser")";
 
 	if [[ "$DOCKERFILE" != "null" ]]; then
 		local MOUNT_COMMAND="$(grep "CMD" .devcontainer/$DOCKERFILE)"
@@ -89,6 +90,13 @@ function dev
 		fi
 	done
 
+	# If there isn't a container user
+	if [[ "$CONTAINER_USER" == "null" ]]; then
+		CONTAINER_USER='--userns="keep-id"'; # Keep-id
+	else
+		CONTAINER_USER="--user $CONTAINER_USER"
+	fi
+	
 	if [[ "$1" == "run" ]]; then
 
 		podman run \
@@ -96,7 +104,7 @@ function dev
 			--mount=type=bind,src="$MOUNT_DIR",dst="$MOUNT_TO" $MOUNT_STRING\
 			--name $IMAGE_NAME \
 			--interactive --tty \
-			--userns="keep-id" \
+			$CONTAINER_USER \
 			$PORTS $2\
 			$IMAGE_NAME $MOUNT_COMMAND
 
