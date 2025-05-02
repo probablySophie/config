@@ -92,7 +92,7 @@ function dev
 
 	# If there isn't a container user
 	if [[ "$CONTAINER_USER" == "null" ]]; then
-		CONTAINER_USER='--userns="keep-id"'; # Keep-id
+		CONTAINER_USER="--userns keep-id"; # Keep-id
 	else
 		CONTAINER_USER="--user $CONTAINER_USER"
 	fi
@@ -103,6 +103,7 @@ function dev
 			--rm \
 			--mount=type=bind,src="$MOUNT_DIR",dst="$MOUNT_TO" $MOUNT_STRING\
 			--name $IMAGE_NAME \
+			-h $IMAGE_NAME \
 			--interactive --tty \
 			$CONTAINER_USER \
 			$PORTS $2\
