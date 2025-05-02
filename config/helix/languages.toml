@@ -111,54 +111,39 @@ language-servers = ["vscode-css-language-server", "tailwindcss-ls"] # vscode-lan
 indent = { tab-width = 4, unit = "\t" }
 
 [[language]]
-name = "vue"
-file-types = ["vue"]
-language-servers = ["volar"]
-injection-regex = "vue"
-roots = ["package.json", "vue.config.js"]
-indent = { tab-width = 4, unit = "\t" }
-
-[language-server.volar]
-command = "vue-language-server"
-args = ["--stdio"]
-
-[language-server.volar.config]
-typescript = { tsdk = "./node_modules/typescript/lib" }
-
-[[language]]
 name = "javascript"
-roots = ["deno.json", "deno.jsonc"]
+roots = ["deno.json", "deno.jsonc", "package.json", "package.jsonc"]
 file-types = ["js", "mjs"]
-language-servers = ["deno-lsp", "tailwindcss-ls"]
+language-servers = ["typescript-language-server"]
 indent = { tab-width = 4, unit = "\t" }
 
 [[language]]
 name = "typescript"
-roots = ["deno.json", "deno.jsonc"]
+roots = ["deno.json", "deno.jsonc", "package.json", "package.jsonc"]
 file-types = ["ts"]
-language-servers = ["deno-lsp", "tailwindcss-ls"]
+language-servers = ["typescript-language-server"]
 indent = { tab-width = 4, unit = "\t" }
 
 [[language]]
 name = "jsx"
-roots = ["deno.json", "deno.jsonc"]
+roots = ["deno.json", "deno.jsonc", "package.json", "package.jsonc"]
 file-types = ["jsx"]
-language-servers = ["deno-lsp", "tailwindcss-ls"]
+language-servers = ["typescript-language-server"]
 indent = { tab-width = 4, unit = "\t" }
 
 [[language]]
 name = "tsx"
-roots = ["deno.json", "deno.jsonc"]
+roots = ["deno.json", "deno.jsonc", "package.json", "package.jsonc"]
 file-types = ["tsx"]
-language-servers = ["deno-lsp", "tailwindcss-ls"]
+language-servers = ["typescript-language-server"]
 indent = { tab-width = 4, unit = "\t" }
 
-[language-server.deno-lsp]
-command = "deno"
-args = ["lsp"]
+# [language-server.deno-lsp]
+# command = "deno"
+# args = ["lsp"]
 
-[language-server.deno-lsp.config.deno]
-enable = true
+# [language-server.deno-lsp.config.deno]
+# enable = true
 # suggest = { completeFunctionCalls = false, imports = { hosts = { "https://deno.land" = true } } }
 # inlayHints.parameterNames.enabled = "all"
 # inlayHints.parameterTypes.enabled = true
