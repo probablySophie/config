@@ -13,3 +13,7 @@ cargo install bat --locked # A cat replacer
 cargo install --locked yazi-fm yazi-cli
 cargo install fd-find
 cargo install ripgrep
+
+if command -v notify-send &> /dev/null ; then
+	notify-send "Finished Installing!" -a "cargo.sh"
+fi
