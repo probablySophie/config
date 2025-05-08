@@ -76,11 +76,24 @@ name = "json"
 language-servers = [ "vscode-json-language-server" ]
 indent = { tab-width = 4, unit = "    " }
 
-
 [[language]]
 name = "jsonc"
 language-servers = [ "vscode-json-language-server" ]
 indent = { tab-width = 4, unit = "    " }
+
+[language-server.vscode-json-language-server]
+command = "vscode-json-language-server"
+[language-server.vscode-json-language-server.config]
+provideFormatter = true
+[language-server.vscode-json-language-server.config.json]
+keepLines.enable = true
+schemas = [
+  {"fileMatch" = ["package.json"], "url" = "https://json.schemastore.org/package.json"}, 
+  {"fileMatch" = ["tsconfig.json"], "url" = "https://json.schemastore.org/tsconfig"}, 
+  {"url" = "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainer.base.schema.json"}, 
+  {"url" = "https://raw.githubusercontent.com/denoland/deno/refs/heads/main/cli/schemas/config-file.v1.json"} 
+]
+
 
 [[language]]
 name = "markdown"
@@ -170,9 +183,14 @@ auto-format = false
 [language-server.astro-ls]
 command = "astro-ls"
 args = ["--stdio"]
-config = {typescript = {tsdk = "/home/sophie/.cache/deno/npm/registry.npmjs.org/typescript/5.7.3/lib"}, environment = "node"}
+[language-server.astro-ls.config]
+typescript = {tsdk = "/home/sophie/.bun/install/global/node_modules/typescript/lib"}
+environment = "node"
 
 [[language]]
 name = "astro"
+roots = ["package.json", "astro.config.mjs"]
 indent = { tab-width = 4, unit = "\t" }
 language-servers = [ "astro-ls" ]
+# language-server = {command = "astro-ls", args = [ "--stdio" ]}
+# config = { "typescript" = { "tsdk" = "/home/sophie/.bun/bin/tsserver" }, "environment" = "node" }
