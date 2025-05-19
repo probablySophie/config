@@ -105,6 +105,7 @@ function dev
 			--name $IMAGE_NAME \
 			-h $IMAGE_NAME \
 			--interactive --tty \
+			--workdir $MOUNT_TO \
 			$CONTAINER_USER \
 			$PORTS $2\
 			$IMAGE_NAME $MOUNT_COMMAND
