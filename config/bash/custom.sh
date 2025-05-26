@@ -79,3 +79,5 @@ if command -v nap &> /dev/null; then
 	export NAP_CONFIG="$HOME/.config/nap/config.yaml"
 	custom_command "nap" "The snippet manager we use"
 fi
+
+export XDG_CONFIG_HOME="$HOME/.config"
