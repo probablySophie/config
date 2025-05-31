@@ -99,6 +99,11 @@ descriptive_alias "escape_spaces" "sed -e 's/ /\\\\\\ /g' -e 's/&/\\&/g'" "Escap
 # Requres fzf for the TUI niceness & gh for the github part
 if command -v fzf &> /dev/null ; then
 	if command -v gh &> /dev/null ; then
-		descriptive_alias "clone" "gh repo list -L 100 | fzf | sed 's/[ \t].*//g' | xargs -I {} gh repo clone {}" "Clone one of the logged in gh account's repos from github into the current folder (TUI/you pick)"
+		descriptive_alias "clone" "gh repo list -L 100"\
+"| fzf "\
+"| sed 's/[ \t].*//g' "\
+"| xargs -I {} gh repo clone {} --recurse-submodules" \
+	"Clone one of the logged in gh account's repos from github into the current folder (TUI/you pick)"
 	fi
 fi
+
