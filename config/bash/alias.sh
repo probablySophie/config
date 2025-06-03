@@ -102,7 +102,7 @@ if command -v fzf &> /dev/null ; then
 		descriptive_alias "clone" "gh repo list -L 100"\
 "| fzf "\
 "| sed 's/[ \t].*//g' "\
-"| xargs -I {} gh repo clone {} --recurse-submodules" \
+"| xargs -I {} gh repo clone {} -- --recurse-submodules" \
 	"Clone one of the logged in gh account's repos from github into the current folder (TUI/you pick)"
 	fi
 fi
