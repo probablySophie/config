@@ -25,7 +25,11 @@ black=$(tput setaf 0)
 white=$(tput setaf 15)
 grey=$(tput setaf 7)
 
-
+bold=$(tput bold)
+dim=$(tput dim)
+italic="\033[3m"
+underline="\033[4m"
+reverse="\033[7m" # Reversing the foreground & background colours
 
 normal=$(tput sgr0)
 
