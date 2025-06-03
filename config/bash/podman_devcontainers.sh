@@ -81,12 +81,10 @@ function dev
 
 	# Looping over array items
 	for item in $MOUNTS; do
-		if [[ ${#item} > 3 ]] && [[ "$item" -ne "" ]]; then
-			# Strip quotes
-			if [[ "${item: -1}" == '"' ]]; then item="${item: 0 : -1}"; fi
-			if [[ "${item:0:1}" == '"' ]]; then item="${item: 1 }"; fi
-
-			local MOUNT_STRING="${MOUNT_STRING} --mount=${item}"
+		# Strip quotes
+		item="$(printf "$item" | sed 's/\("[^"]*$\)\|\(^[^"]*"\)//g' )"
+		if [[ ${#item} > 3 ]] && [[ "$item" != "" ]]; then
+			MOUNT_STRING="${MOUNT_STRING} --mount=${item}"
 		fi
 	done
 
@@ -98,7 +96,6 @@ function dev
 	fi
 	
 	if [[ "$1" == "run" ]]; then
-
 		podman run \
 			--rm \
 			--mount=type=bind,src="$MOUNT_DIR",dst="$MOUNT_TO" $MOUNT_STRING\
