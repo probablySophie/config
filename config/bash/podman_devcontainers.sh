@@ -51,15 +51,16 @@ function dev
 	local MOUNT_COMMAND="";
 	local CONTAINER_USER="$(__get ".containerUser")";
 
+	# INFO A custom mount command?
 	if [[ "$DOCKERFILE" != "null" ]]; then
 		local MOUNT_COMMAND="$(grep "CMD" .devcontainer/$DOCKERFILE)"
 		if [[ "$MOUNT_COMMAND" != "" ]]; then
 			MOUNT_COMMAND="$(printf "$MOUNT_COMMAND" | sed -e 's/CMD //g' -e 's/\(\[\|]\|"\)//g')"
 		fi
 	fi
-	if [[ "$MOUNT_COMMAND" == "" ]]; then
-		MOUNT_COMMAND="/bin/bash"
-	fi
+	# if [[ "$MOUNT_COMMAND" == "" ]]; then
+	# 	MOUNT_COMMAND="/bin/bash"
+	# fi
 
 	if [[ "$1" == "build" ]]; then
 		printf "Building!\n";
@@ -74,13 +75,18 @@ function dev
 		return 0
 	fi
 
+	# INFO The base mount directory
 	# Add a slash to MOUNT_TO if it doesn't already have one
 	if [[ "${MOUNT_TO: -1}" != "/" ]]; then local MOUNT_TO="${MOUNT_TO}/"; fi
 	# Add the current directory to MOUNT_TO so that we get workspaces/project_dir/
 	local MOUNT_TO="${MOUNT_TO}${PWD##*/}"
 
-	# Looping over array items
+	# INFO Any extra directories to mount
 	for item in $MOUNTS; do
+		# Skip if null
+		if [[ "$item" == "null" ]]; then
+			continue
+		fi
 		# Strip quotes
 		item="$(printf "$item" | sed 's/\("[^"]*$\)\|\(^[^"]*"\)//g' )"
 		if [[ ${#item} > 3 ]] && [[ "$item" != "" ]]; then
