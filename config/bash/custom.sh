@@ -16,6 +16,7 @@ add_source "git.sh"
 add_source "completions.sh"
 add_source "wsl.sh"
 add_source "timezone.sh"
+add_source "loading.sh"
 
 # This one requires we have podman installed
 if command -v podman &> /dev/null ; then
