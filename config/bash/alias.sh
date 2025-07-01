@@ -43,6 +43,9 @@ safealias_file $HOME/AppImages/love*.AppImage love "Run Love2D" # Love2D :)
 descriptive_alias "todo" \
 	"grep -r --exclude-dir='.*' --exclude-dir='node_modules' 'TODO:' *" \
 	"Recursively list all instances of 'TODO:' in non-hidden files"
+descriptive_alias "todo1" \
+	"grep -m 1 -r --exclude-dir='.*' --exclude-dir='node_modules' 'TODO:' *" \
+	"Recursively list only the first instance of 'TODO:' per non-hidden file"
 
 alias gitwhoami="git config --list | grep \"user\"" # because I don't want to FULLY dox myself
 
