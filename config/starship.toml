@@ -4,7 +4,7 @@
 # Inserts a blank line between shell prompts
 add_newline = true
 
-command_timeout = 2000
+command_timeout = 500
 
 #prompt = "nushell"
 
@@ -15,3 +15,6 @@ success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = false
+
+[hostname]
+ssh_only = true

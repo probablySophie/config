@@ -1,4 +1,4 @@
-require("starship"):setup()
+-- require("starship"):setup()
 
 Status:children_add(function()
 	local h = cx.active.current.hovered
