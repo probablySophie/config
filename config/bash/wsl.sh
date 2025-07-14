@@ -22,5 +22,6 @@ function notify
 }
 
 alias notify-send=notify
+alias pwsh="pwsh.exe"
 
 export BROWSER="wslview" # This stops issues with `gh auth login`
