@@ -1,9 +1,11 @@
 
+__BASH_CONFIG_PATH="$HOME/.config/bash";
+
 add_source ()
 {
-	if [[ -f "$HOME/.config/bash/$1" ]]
+	if [[ -f "$__BASH_CONFIG_PATH/$1" ]]
 	then
-		source "$HOME/.config/bash/$1"
+		source "$__BASH_CONFIG_PATH/$1"
 	fi
 }
 

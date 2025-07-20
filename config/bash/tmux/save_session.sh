@@ -1,27 +1,8 @@
 
-# Trying to save the tmux windows
+. "$__BASH_CONFIG_PATH/tmux/util_functions.sh";
+__tmuxx_save_file="$HOME/.local/share/tmuxx/saved_session.json";
 
-# Count the number of lines in a given set of sessions/windows/whatever
-function count_num
-{
-	if [[ "$1" == "" ]]; then
-		printf "0"
-	fi
-	# Word count (line) seems to always minus 1 from the actual line count (maybe it only counts newlines?)
-	printf $(( $(printf "$1" | wc -l) + 1 ))
-}
-# $1 - the string
-# $2 - the line to cut
-function get_line
-{
-	# And cut starts from 1, so we add 1 :)
-	printf "$1" | cut -d'
-' -f $(($2 + 1))
-}
-function get_field
-{
-	printf "$( printf "$1" | cut -d'|' -f $2 )"
-}
+# Trying to save the tmux windows
 
 json="[]";
 
@@ -33,7 +14,7 @@ function handle_sessions
 	# Handle the sessions!
 	for (( i=0; i<$count; i++ )); do
 		session="$( get_line "$sessions" $i )";
-		printf "Session: $session\n";
+		# printf "Session: $session\n";
 
 		json="$(echo "$json" | jq '. += [{
 				"id": "'$( get_field "$session" 1 | sed 's/\$//g' )'",
@@ -51,7 +32,7 @@ function handle_windows
 	# Handle the windows!
 	for (( i=0; i<$count; i++ )); do
 		window="$( get_line "$windows" $i )";
-		printf "Window: $window\n";
+		# printf "Window: $window\n";
 		session_id=$( get_field "$window" 1 | sed 's/\$//g' );
 		session_num=$(echo "$json" | jq "map(.id==\""$session_id"\")| index(true)");
 
@@ -77,7 +58,7 @@ function handle_panes
 		window_id=$( get_field "$pane" 2 | sed 's/\@//g' );
 		window_num=$(echo "$json" | jq ".[$session_num].windows | map(.id==\""$window_id"\")| index(true)");
 
-		printf "session: ${session_num} window: ${window_num}\n";
+		# printf "session: ${session_num} window: ${window_num}\n";
 
 		json="$(echo "$json" | jq '.['$session_num'].windows['$window_num'].panes += [ {
 				"name": "'"$( get_field "$pane" 5 )"'",
@@ -94,6 +75,6 @@ handle_windows;
 handle_panes;
 
 mkdir -p ~/.local/share/tmuxx
-echo "$json" > ~/.local/share/tmuxx/saved_session.json
+echo "$json" > "$__tmuxx_save_file";
 
 
