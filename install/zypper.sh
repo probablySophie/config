@@ -11,6 +11,7 @@ if command -v zypper &> /dev/null ; then
 		podman # Container management
 		jq # For cli/bash json parsing
 		file # for Yazi
+		man-pages # Man Pages
 	)
 	"${CMD[@]}"
 fi
