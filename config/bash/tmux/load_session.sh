@@ -35,7 +35,7 @@ function make_windows
 		local pane_1_path="$(pane_info $1 $window_index 0 "path" )";
 		local window_name="$(window_info $1 $window_index "name" )";
 	
-		tmux new-window \
+		tmux new-window -a \
 			-t "$session_name" \
 			-n "$window_name" \
 			-c "$pane_1_path"
