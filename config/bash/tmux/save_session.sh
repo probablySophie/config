@@ -14,7 +14,7 @@ function handle_sessions
 	# Handle the sessions!
 	for (( i=0; i<$count; i++ )); do
 		session="$( get_line "$sessions" $i )";
-		# printf "Session: $session\n";
+		printf "Session: $session\n";
 
 		json="$(echo "$json" | jq '. += [{
 				"id": "'$( get_field "$session" 1 | sed 's/\$//g' )'",
@@ -32,7 +32,7 @@ function handle_windows
 	# Handle the windows!
 	for (( i=0; i<$count; i++ )); do
 		window="$( get_line "$windows" $i )";
-		# printf "Window: $window\n";
+		printf "\tWindow: $window\n";
 		session_id=$( get_field "$window" 1 | sed 's/\$//g' );
 		session_num=$(echo "$json" | jq "map(.id==\""$session_id"\")| index(true)");
 
@@ -76,5 +76,4 @@ handle_panes;
 
 mkdir -p ~/.local/share/tmuxx
 echo "$json" > "$__tmuxx_save_file";
-
-
+printf "Saved to $__tmuxx_save_file";
