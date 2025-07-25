@@ -195,3 +195,18 @@ indent = { tab-width = 4, unit = "\t" }
 language-servers = [ "astro-ls" ]
 # language-server = {command = "astro-ls", args = [ "--stdio" ]}
 # config = { "typescript" = { "tsdk" = "/home/sophie/.bun/bin/tsserver" }, "environment" = "node" }
+
+
+# TODO: Lua LSP
+#[[language]]
+#name = "lua"
+# https://github.com/LuaLS/lua-language-server
+
+# TODO: Markdoc LSP
+# https://github.com/helix-editor/helix/wiki/Language-Server-Configurations#markdoc
+
+# TODO: PHP :(
+# https://github.com/helix-editor/helix/wiki/Language-Server-Configurations#php
+
+# TODO: Docker/Docker Compose?
+# https://github.com/helix-editor/helix/wiki/Language-Server-Configurations#docker
