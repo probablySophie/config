@@ -39,6 +39,7 @@ function make_windows
 			-t "$session_name" \
 			-n "$window_name" \
 			-c "$pane_1_path"
+		tmux select-window -t "$session_name:$(( $window_index + 1 ))"
 	done
 	# And then close the first window we made
 	tmux kill-window -t "${session_name}:0";
