@@ -147,14 +147,16 @@ function kill_temp
 	done
 }
 
-# TODO: If there's only one session - just attach to that
-
-# Make a new "temp" session
-tmux new-session -s "temp" -d;
-# Tell the temp session to open the session picker
-tmux send-keys -t "temp" "tmux choose-session" Enter;
-# Queue up killing the temp session
-kill_temp &
-# Attach to the temp session 
-tmux a -t "temp"
-
+# If there's only one session - just attach to that
+if [[ "$(tmux list-session | wc -l)" == "1" ]]; then
+	tmux a
+else
+	# Make a new "temp" session
+	tmux new-session -s "temp" -d;
+	# Tell the temp session to open the session picker
+	tmux send-keys -t "temp" "tmux choose-session" Enter;
+	# Queue up killing the temp session
+	kill_temp &
+	# Attach to the temp session 
+	tmux a -t "temp"
+fi
