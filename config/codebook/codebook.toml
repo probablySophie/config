@@ -5,11 +5,9 @@ dictionaries = [
 words = [
     "dataverse",
     "jira",
+    "pandoc",
 ]
-flag_words = [
-    "todo:",
-    "fixme:",
-]
+flag_words = ["fixme"]
 ignore_patterns = [
     "[A-Z]{2,}",
     'https?://[^\s]+',
