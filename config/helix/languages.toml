@@ -98,8 +98,14 @@ schemas = [
 
 [[language]]
 name = "markdown"
-language-servers = [ "marksman", "harper-ls" ]
+language-servers = [ "marksman", "harper-ls", "codebook" ]
 indent = { tab-width = 4, unit = "\t" }
+
+# Spell checking
+# https://github.com/blopker/codebook
+[language-server.codebook]
+command = "codebook-lsp"
+args = ["serve"]
 
 [language-server.harper-ls]
 command = "harper-ls"
