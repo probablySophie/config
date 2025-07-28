@@ -9,23 +9,40 @@ function symlink
 {
 	local file=$1
 	local link_to=$2
-	# Make sure the file we're linking from actually exists
-	if [[ -f $file ]] || [[ -d $file ]]; then
-		printf "\t${file##*/}\n";
-		ln -sf $file $link_to;
+
+	# Does our friend already exist?
+	if [[ -f $link_to ]] || [[ -d $link_to ]]; then
+		file_output="$(file $link_to)";
+		# Is it NOT a symlink?
+		if [[ "! $file_output" =~ symbolic ]]; then
+			printf "\t${orange}${file##*/} exists and is NOT a symlink${normal}\n";
+			return
+		fi
 	fi
+	
+	# Make sure the file we're linking from actually exists
+	# And make the symlink :)
+	if [[ -f $file ]] || [[ -d $file ]]; then
+		ln -sf $file $link_to;
+		printf "\t${green}${file##*/}${normal}\n";
+		return
+	fi
+	# If we've got here then the file doesn't exist :(
+	printf "\t${red}Source file ${file} does not exist${normal}\n";
 }
 
 function bulk_symlink
 {
-	printf "\nInput:  $1\n";
-	printf "Output into: $2\n";
+	printf "Creating symlinks from ${bold}$1${normal} -> ${bold}$2${normal}\n";
 	for file in $1/*; do
 		symlink $file $2
 	done
+	# and also symlink hidden files please :)
 	for file in $1/.*; do
+		if [[ "${file##*/}" == ".*" ]]; then continue; fi
 		symlink $file $2
 	done
+	printf "\n";
 }
 
 bulk_symlink "$PWD/config" "$HOME/.config/"
