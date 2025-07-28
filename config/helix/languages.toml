@@ -204,8 +204,9 @@ language-servers = [ "astro-ls" ]
 
 
 # TODO: Lua LSP
-#[[language]]
-#name = "lua"
+[[language]]
+name = "lua"
+indent = { tab-width = 4, unit = "\t" }
 # https://github.com/LuaLS/lua-language-server
 
 # TODO: Markdoc LSP
