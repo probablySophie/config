@@ -3,9 +3,11 @@ dictionaries = [
     "en_us",
 ]
 words = [
+    "automations",
     "dataverse",
     "jira",
     "pandoc",
+    "preact",
 ]
 flag_words = ["fixme"]
 ignore_patterns = [
