@@ -47,6 +47,10 @@ descriptive_alias "todo1" \
 	"grep -m 1 -r --exclude-dir='.*' --exclude-dir='node_modules' 'TODO:' *" \
 	"Recursively list only the first instance of 'TODO:' per non-hidden file"
 
+descriptive_alias "todoedit" \
+	"grep -rl --exclude-dir='.*' --exclude-dir='node_modules' 'TODO:' * | fzf -m --tmux | xargs $EDITOR" \
+	"Opens an fzf window, allows you to pick from files with TODO:, opens them in $EDITOR"
+
 alias gitwhoami="git config --list | grep \"user\"" # because I don't want to FULLY dox myself
 
 alias q="exit"	# because I use neovim and am dumb :(
