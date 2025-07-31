@@ -34,15 +34,39 @@ function make_windows
 		
 		local pane_1_path="$(pane_info $1 $window_index 0 "path" )";
 		local window_name="$(window_info $1 $window_index "name" )";
+		printf "Making $window_name\n";
 	
 		tmux new-window -a \
 			-t "$session_name" \
 			-n "$window_name" \
 			-c "$pane_1_path"
-		tmux select-window -t "$session_name:$(( $window_index + 1 ))"
+		# tmux select-window -t "$session_name:$window_name"
+		# tmux list-windows
 	done
+	# tmux list-windows
 	# And then close the first window we made
 	tmux kill-window -t "${session_name}:0";
+	for (( i=0; i<$2; i++ )); do
+		# The current state of things
+		local current="$(tmux list-windows -F "#{window_index}:#{window_name}:#{window_panes}")";
+		# Who we WANT to be at index i
+		local window_index="$(jq -r '.['$1'].windows | map(.index == "'$i'") | index(true)' $__tmuxx_save_file)";
+		local window_name="$(window_info $1 $window_index "name" )";
+
+		# If the current line's name is the same as the name of who we want at this index
+		if [[ "$(get_line "$current" $i | cut -d':' -f 2)" == "$window_name" ]]; then
+			continue
+		fi
+		local current_bad_index="$(printf "$current" | grep "Documents" | cut -d':' -f 1)";
+		# printf "For window '$window_name' Swapping $i and $current_bad_index \n"
+		# Else we need to do some swapping
+		tmux swap-window \
+			-s "${session_name}:$i" \
+			-t "${session_name}:$current_bad_index"
+		# tmux list-windows
+	done
+
+	# And THEN put the windows in the right order
 }
 
 function handle_sessions
