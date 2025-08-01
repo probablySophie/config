@@ -1,79 +1,30 @@
-
-. "$__BASH_CONFIG_PATH/tmux/util_functions.sh";
 __tmuxx_save_file="$HOME/.local/share/tmuxx/saved_session.json";
 
-# Trying to save the tmux windows
+# All the values that we want to query. They're stored in a JSON object as "value_name": "value_value"
+session_values=("session_id" "session_name" "session_path" "session_windows");
+window_values=("window_id" "window_name" "window_index" "window_panes");
+pane_values=("pane_index" "pane_current_path" "pane_title" "pane_width" "pane_height");
 
-json="[]";
-
-# ID, Name, Path, num windows
-sessions=$(tmux list-sessions -F "#{session_id}|#S|#{session_path}|#{session_windows}");
-function handle_sessions
+function json_tmux_query
 {
-	count=$( count_num "$sessions" );
-	# Handle the sessions!
-	for (( i=0; i<$count; i++ )); do
-		session="$( get_line "$sessions" $i )";
-		printf "Session: $session\n";
-
-		json="$(echo "$json" | jq '. += [{
-				"id": "'$( get_field "$session" 1 | sed 's/\$//g' )'",
-				"name": "'"$( get_field "$session" 2 )"'",
-				"path": "'"$( get_field "$session" 3 )"'",
-				"windows": []
-			}]')";
+	local array=("$@");
+	local query_string="";
+	for item in "${array[@]}"; do
+		query_string="${query_string} \"$item\": \"#{$item}\","
 	done
+	# Trim the final comma
+	query_string="${query_string::-1}"
+	printf "$query_string";
 }
+# Build the one giant query
+pane_query="{$(json_tmux_query "${pane_values[@]}") #}#,";
+window_query="{$(json_tmux_query "${window_values[@]}"), \"panes\": [#{P:#{$pane_query}}] #}#,";
+session_query="{$(json_tmux_query "${session_values[@]}"), \"windows\": [#{W:#{$window_query}}] #}#,";
 
-windows=$(tmux list-windows -F "#{session_id}|#{window_id}|#{window_name}|#{window_index}|#{window_panes}");
-function handle_windows
-{
-	count=$( count_num "$windows" );
-	# Handle the windows!
-	for (( i=0; i<$count; i++ )); do
-		window="$( get_line "$windows" $i )";
-		printf "\tWindow: $window\n";
-		session_id=$( get_field "$window" 1 | sed 's/\$//g' );
-		session_num=$(echo "$json" | jq "map(.id==\""$session_id"\")| index(true)");
+# Do the display-message query
+result="$(tmux display-message -p "[#{S:#{$session_query}}]")";
+# Replace all ,] with ] so JQ won't freak out
+result="$(printf "$result" | sed 's/,]/]/g')";
 
-		json="$(echo "$json" | jq '.['$session_num'].windows += [ {
-				"id": "'"$( get_field "$window" 2 | sed 's/\@//g' )"'",
-				"name": "'"$( get_field "$window" 3 )"'",
-				"index": "'"$( get_field "$window" 4 )"'",
-				"panes": []
-			} ]')";
-	done
-}
-
-# panes=$(tmux list-panes -F );
-panes=$(tmux list-panes -s -F "#{session_id}|#{window_id}|#{pane_index}|#{pane_current_path}|#{pane_title}|#{pane_width}|#{pane_height}");
-function handle_panes
-{
-	count=$( count_num "$panes" );
-	# Handle the panes!
-	for (( i=0; i<$count; i++ )); do
-		pane="$( get_line "$panes" $i )";
-		session_id=$( get_field "$pane" 1 | sed 's/\$//g' );
-		session_num=$(echo "$json" | jq "map(.id==\""$session_id"\")| index(true)");
-		window_id=$( get_field "$pane" 2 | sed 's/\@//g' );
-		window_num=$(echo "$json" | jq ".[$session_num].windows | map(.id==\""$window_id"\")| index(true)");
-
-		# printf "session: ${session_num} window: ${window_num}\n";
-
-		json="$(echo "$json" | jq '.['$session_num'].windows['$window_num'].panes += [ {
-				"name": "'"$( get_field "$pane" 5 )"'",
-				"index": "'"$( get_field "$pane" 3 )"'",
-				"path": "'"$( get_field "$pane" 4 )"'",
-				"width": "'"$( get_field "$pane" 6 )"'",
-				"height": "'"$( get_field "$pane" 7 )"'"
-			} ]')";
-	done
-}
-
-handle_sessions;
-handle_windows;
-handle_panes;
-
-mkdir -p ~/.local/share/tmuxx
-echo "$json" > "$__tmuxx_save_file";
-printf "Saved to $__tmuxx_save_file";
+# Save the results
+printf "$result" | jq -r '.' > $__tmuxx_save_file;
