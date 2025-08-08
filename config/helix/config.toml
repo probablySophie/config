@@ -61,16 +61,20 @@ C-o = "file_picker"                # Ctrl-O     Open another file
 C-left = "goto_previous_buffer"    # Ctrl-left  prev_buffer
 C-right = "goto_next_buffer"       # Ctrl-right next_buffer
 r = "redo"                         # R          redo
+# Space K does this
 S-k = "hover"                      # Shift-K    LSP Hover
-S-l = "code_action"                # Shift-L    LSP Code Actions
-S-r = "rename_symbol"              # Shift-R    LSP Rename
+# space-a does code actions
+# S-l = "code_action"                # Shift-L    LSP Code Actions
+# space-r renames
+# S-r = "rename_symbol"              # Shift-R    LSP Rename
 S-w = ":buffer-close"              # Shift-W    Close Buffer
 S-h = "signature_help"
 C-r = [":reload-all", ":sh printf 'Reloaded'"]
 g = {f = ["goto_file", ":redraw"]}
 
 # Toggle whitespace
-space.x = ":toggle whitespace.render all none"
+space.x.w = ":toggle whitespace.render all none"
+space.x.f = [":update", ":sh bunx prettier %{buffer_name} --write", ":reload"]
 
 space.t.s = ":tree-sitter-scopes"
 space.t.h = ":tree-sitter-highlight-name"
