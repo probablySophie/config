@@ -5,6 +5,7 @@ dictionaries = [
 words = [
     "automations",
     "dataverse",
+    "cloudflare",
     "jira",
     "mins",
     "pandoc",
@@ -14,4 +15,5 @@ flag_words = ["fixme"]
 ignore_patterns = [
     "[A-Z]{2,}",
     'https?://[^\s]+',
+    "`[A-Za-z1-9]*`"
 ]
