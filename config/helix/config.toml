@@ -80,6 +80,10 @@ space.t.s = ":tree-sitter-scopes"
 space.t.h = ":tree-sitter-highlight-name"
 space.t.t = ":tree-sitter-subtree"
 
+# Inserting markdown stuff
+space.i.d = ':insert-output date +"%%Y-%%m-%%d"'
+space.i.f = ":insert-output echo '---'; echo 'tags: []'; echo \"created: \\\"$(date +'%%Y-%%m-%%d')\\\"\"; echo 'name: \"\"' ; echo '---'"
+
 [keys.select]
 # Surround selected text!
 "("  = "@ms("  # With ()
