@@ -3,13 +3,19 @@ dictionaries = [
     "en_us",
 ]
 words = [
+    "astro",
     "automations",
     "cloudflare",
     "dataverse",
+    "frontmatter",
     "jira",
+    "lucide",
+    "markdoc",
     "mins",
     "pandoc",
     "preact",
+    "signifiers",
+    "unsplash",
     "xbox",
 ]
 flag_words = ["fixme"]
