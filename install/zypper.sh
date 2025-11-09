@@ -12,6 +12,7 @@ if command -v zypper &> /dev/null ; then
 		jq # For cli/bash json parsing
 		file # for Yazi
 		man-pages # Man Pages
+		gh # Github's CLI
 	)
 	"${CMD[@]}"
 fi
