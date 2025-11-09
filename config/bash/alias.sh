@@ -39,6 +39,7 @@ safealias_command() # safealias_command COMMAND_TO_CHECK ALIAS
 
 safealias_file $HOME/AppImages/love*.AppImage love "Run Love2D" # Love2D :)
 
+	
 # Recursively get all instances of TODO in (non-hidden) files
 descriptive_alias "todo" \
 	"grep -r --exclude-dir='.*' --exclude-dir='node_modules' 'TODO:' *" \
@@ -47,9 +48,28 @@ descriptive_alias "todo1" \
 	"grep -m 1 -r --exclude-dir='.*' --exclude-dir='node_modules' 'TODO:' *" \
 	"Recursively list only the first instance of 'TODO:' per non-hidden file"
 
-descriptive_alias "todoedit" \
-	"grep -rl --exclude-dir='.*' --exclude-dir='node_modules' 'TODO:' * | fzf -m --tmux | xargs $EDITOR" \
-	"Opens an fzf window, allows you to pick from files with TODO:, opens them in $EDITOR"
+FZF_PREVIEW_FILES=" fzf -m --print0 --preview 'bat --color=always {}' --bind 'focus:transform-header:file --brief {}' "
+
+# Does also escape other chars as I run into them
+function escape_spaces { sed -e 's/ /\\ /g' -e 's/&/\\&/g' -e 's/(/\\(/g' -e 's/)/\\)/g' -e 's/\x0//g' ; }
+custom_command "escape_spaces" "Escape spaces from the piped in input"
+
+function open_in_editor { xargs --no-run-if-empty -0 -o ${EDITOR}; }
+
+# https://github.com/junegunn/fzf
+function fzf_preview_files {
+	fzf -m --print0 --preview "bat --color=always {}" --bind "focus:transform-header:file --brief {}"
+}
+
+# Can we use RipGrep instead of grep?
+# https://github.com/BurntSushi/ripgrep
+if command -v rg &> /dev/null ; then
+	function todoedit { rg -l "TODO:" | fzf_preview_files | escape_spaces | open_in_editor; }
+else
+	function todoedit { grep -rli --exclude-dir=".*" --exclude-dir="node_modules" --exclude-dir="dist" "TODO:" * | fzf_preview_files | escape_spaces | open_in_editor; }
+fi
+custom_command "todoedit" "Open an FZF window, pick 'TODO:' files, and open them in \$EDITOR"
+
 
 alias gitwhoami="git config --list | grep \"user\"" # because I don't want to FULLY dox myself
 
@@ -97,10 +117,11 @@ alias man="man --pager='less --mouse  --wheel-lines=3'"
 _mkd() { mkdir -p $1; cd $1; } # Make a directory and cd into it
 descriptive_alias "mkd" "_mkd" "Make a new directory and CD into it"
 
-_weather() { curl "https://wttr.in/$1?format=%l:+%C+%t+%x\nFeels+like+%f\nUV+index:+%u\nCurrent+Rain:+%p" ;}
-descriptive_alias "weather" '_weather' "Get the current weather in \$1!"
+descriptive_alias "hxo" "echo \"\$(<.helix/tabs.txt)\" | escape_spaces | xargs hx"
 
-descriptive_alias "escape_spaces" "sed -e 's/ /\\\\\\ /g' -e 's/&/\\&/g'" "Escape spaces from the piped in input"
+weather() { curl "https://wttr.in/$1?format=%l:+%C+%t+%x\nFeels+like+%f\nUV+index:+%u\nCurrent+Rain:+%p" ;}
+custom_command "weather" "Get the current weather in \$1!"
+
 
 # TUI clone one of my github repos
 # Requres fzf for the TUI niceness & gh for the github part
@@ -111,6 +132,11 @@ if command -v fzf &> /dev/null ; then
 "| sed 's/[ \t].*//g' "\
 "| xargs -I {} gh repo clone {} -- --recurse-submodules" \
 	"Clone one of the logged in gh account's repos from github into the current folder (TUI/you pick)"
+	# And submodules as well
+		descriptive_alias "submodule" "gh repo list -L 100"\
+"| fzf "\
+"| sed 's/[ \t].*//g' "\
+"| xargs -I {} git submodule add https://github.com/{}" \
+	"Clone one of the logged in gh account's repos from github into the current folder (TUI/you pick)"
 	fi
 fi
-
