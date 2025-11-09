@@ -6,6 +6,7 @@ words = [
     "astro",
     "automations",
     "cloudflare",
+    "cloudflare's",
     "cron",
     "dataverse",
     "explorable",
@@ -15,12 +16,14 @@ words = [
     "lucide",
     "markdoc",
     "mins",
+    "nmap",
     "pandoc",
     "preact",
     "signable",
     "signifiers",
     "unsplash",
     "xbox",
+    "zod",
 ]
 flag_words = ["fixme"]
 ignore_patterns = [
