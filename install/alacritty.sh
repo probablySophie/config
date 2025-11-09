@@ -9,7 +9,10 @@ rustup override set stable
 rustup update stable
 
 cargo build --release
-echo "source $(pwd)/extra/completions/alacritty.bash" >> ~/.bashrc
+
+mkdir -p ~/.local/completions
+cp "$(pwd)/extra/completions/alacritty.bash" ~/.local/completions/alacritty.sh
+echo "source ~/.local/completions/alacritty.sh" >> ~/.bashrc
 
 sudo cp target/release/alacritty /usr/local/bin
 sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
