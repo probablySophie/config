@@ -2,11 +2,6 @@
 
 function dev
 {
-	if [[ ! -f ".devcontainer/devcontainer.json" ]]; then
-		printf "No .devcontainer/devcontainer.json found!\n\n";
-		printf "Use dev make to create a devcontainer file with schema preinserted\n";
-		return 0
-	fi
 
 	if [[ "$1" == "make" ]]; then
 		if [[ "$(printf "%.1s" "$INPUT" | tr '[:upper:]' '[:lower:]')" == "y" ]]; then
@@ -16,6 +11,11 @@ function dev
 				"https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainer.base.schema.json" \
 				>> ".devcontainer/devcontainer.json";
 		fi
+		return 0
+	fi
+	if [[ ! -f ".devcontainer/devcontainer.json" ]]; then
+		printf "No .devcontainer/devcontainer.json found!\n\n";
+		printf "Use dev make to create a devcontainer file with schema preinserted\n";
 		return 0
 	fi
 
