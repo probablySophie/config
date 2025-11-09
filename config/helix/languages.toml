@@ -205,6 +205,9 @@ language-servers = [ "astro-ls" ]
 # language-server = {command = "astro-ls", args = [ "--stdio" ]}
 # config = { "typescript" = { "tsdk" = "/home/sophie/.bun/bin/tsserver" }, "environment" = "node" }
 
+[[language]]
+name = "yaml"
+indent = { tab-width = 2, unit = " " }
 
 # TODO: Lua LSP
 [[language]]
