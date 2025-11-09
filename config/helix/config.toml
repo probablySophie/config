@@ -82,7 +82,10 @@ space.t.t = ":tree-sitter-subtree"
 
 # Inserting markdown stuff
 space.i.d = ':insert-output date +"%%Y-%%m-%%d"'
-space.i.f = ":insert-output echo '---'; echo 'tags: []'; echo \"created: \\\"$(date +'%%Y-%%m-%%d')\\\"\"; echo 'name: \"\"' ; echo '---'"
+space.i.f = ":insert-output echo '---'; echo 'tags: []'; echo \"created: \\\"$(date +'%%Y-%%m-%%d')\\\"\"; echo 'name: \"\"' ; echo '# References:' ; echo '---'"
+space.i.r = [":sh bun run ~/Code/playground/markdown_notes/index.ts \"%{buffer_name}\"", ":reload"]
+# Saving a tab
+space.i.s = [":sh echo \"%{buffer_name}\" >> .helix/tabs.txt", ":buffer-close"]
 
 [keys.select]
 # Surround selected text!
