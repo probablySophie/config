@@ -17,9 +17,11 @@ if command -v zypper &> /dev/null ; then
 			kdeconnect-kde # KDE Connect
 			lua-language-server # Lua
 			lua55 # Lua
+			mpv # Music player for the terminal (Yazi wants)
 	)
 	"${CMD[@]}"
 fi
+# Yazi also wants `mediainfo` `exiftool`
 
 # Bun - JavaScript runtime
 curl -fsSL https://bun.sh/install | bash
