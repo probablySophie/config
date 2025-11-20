@@ -23,6 +23,7 @@ words = [
     "signifiers",
     "unsplash",
     "xbox",
+    "yazi",
     "zod",
 ]
 flag_words = ["fixme"]
