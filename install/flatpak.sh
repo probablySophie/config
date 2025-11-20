@@ -11,6 +11,7 @@ if command -v flatpak &> /dev/null ; then
 		org.mozilla.Thunderbird # Thunderbird for emails
 		org.mozilla.firefox # Firefox for internet
 		org.gimp.GIMP # Image editing :)
+		org.kicad.KiCad # CAD Editing
 	)
 	"${CMD[@]}"
 fi
