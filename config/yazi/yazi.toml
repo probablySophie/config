@@ -4,5 +4,6 @@ show_hidden = false
 linemode = "size_and_mtime"
 
 [preview]
-image_delay = 10
+image_delay = 5
 
+# https://yazi-rs.github.io/docs/configuration/keymap/
