@@ -140,3 +140,44 @@ if command -v fzf &> /dev/null ; then
 	"Clone one of the logged in gh account's repos from github into the current folder (TUI/you pick)"
 	fi
 fi
+
+# Pick a random todo/task item from a markdown file
+function random_number
+{
+	printf "$((1 + $RANDOM % $1))"
+}
+
+custom_command "random_item" "Picks a random item/task from a given Markdown file."
+function random_item
+{
+	local filename="$1";
+	if [[ "$1" == "" ]]; then
+		if [ -f "TODO.md" ]; then
+			printf "No file given, using ./TODO.md\n";
+			filename="TODO.md";
+		else
+			printf "No file given...\n";
+			return
+		fi
+	fi
+
+	local items=();
+
+	while read line; do
+		if [[ "$line" =~ ^\ ?[*-]\ \[\ \] ]]; then
+			items+=("$line");
+		fi
+	done < "$filename"
+
+	local count="${#items[@]}";
+	local random_num="$(random_number "$count")";
+	printf "Found $count todo items\n";
+	printf "Item ${random_num}: "
+	echo "${items[$(($random_num - 1))]}";
+
+	# local i=1;
+	# while [[ "$(cut )" != "" ]]; do
+	# 	((i++));
+	# 	printf "$i\n";
+	# done
+}
