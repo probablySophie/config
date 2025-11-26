@@ -161,23 +161,27 @@ function random_item
 		fi
 	fi
 
+	local line_nums=();
 	local items=();
 
+	local line_num=0;
 	while read line; do
+		_=$((line_num++));
 		if [[ "$line" =~ ^\ ?[*-]\ \[\ \] ]]; then
 			items+=("$line");
+			line_nums+=($line_num);
 		fi
 	done < "$filename"
 
 	local count="${#items[@]}";
 	local random_num="$(random_number "$count")";
 	printf "Found $count todo items\n";
-	printf "Item ${random_num}: "
+	printf "Item ${random_num}: \n";
 	echo "${items[$(($random_num - 1))]}";
 
-	# local i=1;
-	# while [[ "$(cut )" != "" ]]; do
-	# 	((i++));
-	# 	printf "$i\n";
-	# done
+	printf "\nWould you like to open that in Helix? (y/N)\n";
+	read -n1 ans;
+	if [[ "$ans" =~ ^[yY] ]]; then
+		hx "${filename}":"${line_nums[$(($random_num - 1))]}";
+	fi
 }
