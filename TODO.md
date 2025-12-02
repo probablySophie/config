@@ -1,6 +1,11 @@
 
 # Config Todos
 
+## Config
+
+* [ ] A script to add to `.inputrc`
+	* [ ] `Control-o: "hx .\n"` if helix exists
+
 ## Setup
 
 * [ ] Make a simple setup script  
