@@ -20,6 +20,7 @@ words = [
     "nmap",
     "pandoc",
     "preact",
+    "rofi",
     "serialiser",
     "signable",
     "signifiers",
