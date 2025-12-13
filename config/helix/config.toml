@@ -49,10 +49,11 @@ right = ["diagnostics", "position", "position-percentage", "file-encoding"]
 # https://docs.helix-editor.com/master/remapping.html
 
 [keys.insert]
-C-s = ":w"                         # Ctrl-S      Save
+C-s = ":w"                         # Ctrl-S     Save
 C-left = "goto_previous_buffer"    # Ctrl-left  prev_buffer
 C-right = "goto_next_buffer"       # Ctrl-right next_buffer
 A-h = "signature_help"
+C-z = "undo"                       # Ctrl-z     Undo
 #C-l = [":new", ":insert-output nap", ":redraw"]
 
 [keys.normal]
