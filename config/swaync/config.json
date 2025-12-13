@@ -1,0 +1,78 @@
+{
+    "$schema": "/etc/xdg/swaync/configSchema.json",
+    "control-center-layer": "top",
+    "timeout": 20,
+    "timeout-low": 10,
+    "text-empty": "Nothing to see here...",
+    "widgets": [
+        "title",
+        "buttons-grid",
+        "menubar",
+        "inhibitors",
+        "dnd",
+        "notifications",
+        "mpris",
+        "volume"
+    ],
+    "widget-config": {
+        "menubar": {
+            "buttons#screenshot": {
+                "position": "left",
+                "actions": [
+                    {
+                        "label": "󰹑",
+                        "command": "grim"
+                    }
+                ]
+            }
+        },
+        "buttons-grid": {
+            "buttons-per-row": 7,
+            "actions": [
+                {
+                    "active": true,
+                    "command": "notify-send 'hey'",
+                    "label": "󱈸",
+                    "type": "toggle",
+                    "update_command": "notify-send 'Hi'"
+                },
+                {
+                    "active": true,
+                    "command": "syncthing browser",
+                    "label": "󰘿",
+                    "type": "toggle"
+                },
+                {
+                    "active": false,
+                    "label": "直",
+                    "type": "toggle",
+                    "command": "sh -c '[[ $SWAYNC_TOGGLE_STATE == true ]] && nmcli radio wifi on || nmcli radio wifi off'",
+                    "update-command": "sh -c '[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'"
+                }
+            ]
+        },
+        "title": {
+            "text": "Notification Center",
+            "clear-all-button": true
+        },
+        "mpris": {
+            "blacklist": [ "playerctl" ],
+            "autohide": false,
+            "show-album-art": "always",
+            "loop-carousel": false
+        },
+        "volume": {
+            "label": ""
+        }
+    },
+    "scripts": {
+        "example-script": {
+            "exec": "Your shell command or script here...",
+            "app-name": "Notification app-name Regex",
+            "summary": "Notification summary Regex",
+            "body": "Notification body Regex",
+            "urgency": "Low",
+            "category": "Notification category Regex"
+        }
+    }
+}
