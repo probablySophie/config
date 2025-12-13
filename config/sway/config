@@ -1,0 +1,96 @@
+# Default config for sway
+#
+# Copy this to ~/.config/sway/config and edit it to your liking.
+#
+# Read `man 5 sway` for a complete reference.
+
+# INFO: Example Configs
+# https://git.sr.ht/~jameskupke/dotfiles/tree/master/item/config/sway/config
+# Has examples of using swaynag for things
+
+### Variables
+#
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+# Home row direction keys, like vim
+# set $left h
+# set $down j
+# set $up k
+# set $right l
+# Your preferred terminal emulator
+set $term alacritty
+# Your preferred application launcher
+# set $menu wofi
+set $menu rofi -show drun -show-icons
+
+default_border none
+default_floating_border normal
+
+# Auto-enable num-lock
+input type:keyboard xkb_numlock enabled
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+#
+# Example configuration:
+#
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
+#
+# You can get the names of your outputs by running: swaymsg -t get_outputs
+
+### Idle configuration
+#
+# Example configuration:
+#
+# exec swayidle -w \
+#          timeout 300 'swaylock -f -c 000000' \
+#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+#          before-sleep 'swaylock -f -c 000000'
+#
+# This will lock your screen after 300 seconds of inactivity, then turn off
+# your displays after another 300 seconds, and turn your screens back on when
+# resumed. It will also lock your screen before your computer goes to sleep.
+
+### Input configuration
+#
+# Example configuration:
+#
+input type:touchpad {
+	dwt enabled
+	tap enabled # Tap to click
+	natural_scroll enabled # Better scrolling
+	middle_emulation enabled
+}
+input type:pointer {
+    natural_scroll enabled
+    middle_emulation enabled
+}
+
+seat seat0 xcursor_theme Adwaita
+#
+#   input type:keyboard {
+#       xkb_layout "eu"
+#   }
+#
+# You can also configure each device individually.
+# Read `man 5 sway-input` for more information about this section.
+
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+
+include ~/.config/sway/config.d/*
+include /etc/sway/config.d/*
+
+# Including other files :)
+include ~/.config/sway/theme
+include ~/.config/sway/status_bar
+include ~/.config/sway/keymaps
+include ~/.config/sway/custom_app_rules.sh
+include ~/.config/sway/autostart.sh
+
+# Borders for floating windows :)
+# exec ~/.config/sway/scripts/borders.sh
+
