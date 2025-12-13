@@ -1,0 +1,19 @@
+
+bar {
+	swaybar_command waybar
+}
+#     status_command waybar
+#     position top
+#     mode dock
+
+#     # When the status_command prints a new line tostdout, swaybar updates.
+#     # The default just shows the current date and time.
+#     # status_command while date +'Week %V %A  %Y-%m-%d %I:%M%P'; do sleep 1; done
+#     # status_command while ~/.config/sway/scripts/swaybar.sh; do sleep 1; done
+
+#     colors {
+#         statusline #ffffff
+#         background #323232
+#         inactive_workspace #32323200 #32323200 #5c5c5c
+#     }
+# }
