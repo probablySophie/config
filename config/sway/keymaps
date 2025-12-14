@@ -61,6 +61,7 @@
 #
     # TODO: Ctrl+$mod+Left left one workspace
     # TODO: Ctrl+$mod+Right right one workspace
+    # TODO: $mod+w to show workspace overview
     # Switch to workspace
     bindsym $mod+1 workspace number 1
     bindsym $mod+2 workspace number 2
