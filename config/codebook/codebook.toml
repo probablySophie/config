@@ -3,6 +3,7 @@ dictionaries = [
     "en_us",
 ]
 words = [
+    "actioned",
     "astro",
     "automations",
     "cloudflare",
@@ -19,6 +20,8 @@ words = [
     "mins",
     "nmap",
     "pandoc",
+    "podman",
+    "portainer",
     "preact",
     "rofi",
     "serialiser",
