@@ -26,7 +26,7 @@ procMacro = { enable = true }
 
 [[language]]
 name = "latex"
-language-servers = [ "texlab", "harper-ls" ]
+language-servers = [ "texlab", "codebook" ]
 indent = { tab-width = 4, unit="\t" }
 
 [language-server.texlab]
