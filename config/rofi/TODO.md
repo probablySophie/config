@@ -3,7 +3,8 @@
 [Source](https://github.com/davatorium/rofi)
 
 * [x] A config for `Mod+Space` that gives the ssh, file, and other multi/combo options
-	* [ ] Can we include custom menus in the `combi`/mode-switch?
+	* [x] Can we include custom menus in the `combi`/mode-switch?
+		* WE CANNNN
 * [ ] A power menu?
 * [ ] A favourites list/menu
 * [ ] An icon specific theme/style/config for selecting between icons like a power menu or audio controls

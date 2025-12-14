@@ -37,19 +37,20 @@ function run_rofi_scripts()
 }
 # Pipe all scripts in the rofi script file folder into rofi
 
+# We've been run fresh (outside of Rofi)
 if [[ "$ROFI_RETV" == "" ]]; then
 	run_rofi_scripts;
 	return
 fi
 
-# We've been asked what our options are
+# We've been asked by Rofi what our options are
 if [[ "$ROFI_RETV" == 0 ]]; then
 	rofi_scripts
 	exit
 fi
 # Something was selected! ($@ contains the selection)
 if [[ "$ROFI_RETV" == 1 ]]; then
-	coproc ( run_rofi_scripts_selection "$@" true > /dev/null 2>&1 ) &
+	coproc ( run_rofi_scripts_selection "$@" true > /dev/null 2>&1 )
 fi
 
 # No selection?  Exit
