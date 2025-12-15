@@ -32,6 +32,8 @@ input type:keyboard xkb_numlock enabled
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+# TODO: Some method of pulling a random image from ~/Pictures/Wallpapers
+# 		* Possibly pull ~/Pictures/Wallpapers/wallpaper.png & have a script make that an alias to a random image from?
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
