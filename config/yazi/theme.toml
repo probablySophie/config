@@ -1,2 +1,13 @@
+# https://yazi-rs.github.io/docs/configuration/theme
+
 [flavor]
 use = "catppuccin-mocha"
+
+# https://yazi-rs.github.io/docs/configuration/theme/#tabs
+[tabs]
+# https://yazi-rs.github.io/docs/configuration/theme/#types.style
+active = { fg = "reset", bg = "reset", underline = true }
+inactive = { fg = "white", bg = "reset", underline = false }
+# inactive = { fg = "white", bg = "black" }
+sep_inner = { open = "[", close = "]" }
+sep_outer = { open = "", close = "" }
