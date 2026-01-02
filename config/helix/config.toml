@@ -1,4 +1,4 @@
-
+# https://docs.helix-editor.com/configuration.html
 
 # theme = "default"
 theme = "mine"
@@ -61,6 +61,7 @@ C-s = ":w"                         # Ctrl-S     Save
 C-o = "file_picker"                # Ctrl-O     Open another file
 C-left = "goto_previous_buffer"    # Ctrl-left  prev_buffer
 C-right = "goto_next_buffer"       # Ctrl-right next_buffer
+S-w = ":buffer-close"              # Shift-W    Close Buffer
 r = "redo"                         # R          redo
 # Space K does this
 S-k = "hover"                      # Shift-K    LSP Hover
@@ -68,10 +69,9 @@ S-k = "hover"                      # Shift-K    LSP Hover
 # S-l = "code_action"                # Shift-L    LSP Code Actions
 # space-r renames
 # S-r = "rename_symbol"              # Shift-R    LSP Rename
-S-w = ":buffer-close"              # Shift-W    Close Buffer
 S-h = "signature_help"
 C-r = [":reload-all", ":sh printf 'Reloaded'"]
-g = {f = ["goto_file", ":redraw"]}
+g = {f = ["goto_file", ":redraw"], x = ["goto_file", ":redraw"]}
 
 # Toggle whitespace
 space.x.w = ":toggle whitespace.render all none"
