@@ -125,21 +125,34 @@ custom_command "weather" "Get the current weather in \$1!"
 
 # TUI clone one of my github repos
 # Requres fzf for the TUI niceness & gh for the github part
-if command -v fzf &> /dev/null ; then
-	if command -v gh &> /dev/null ; then
-		descriptive_alias "clone" "gh repo list -L 100"\
-"| fzf "\
-"| sed 's/[ \t].*//g' "\
-"| xargs -I {} gh repo clone {} -- --recurse-submodules" \
-	"Clone one of the logged in gh account's repos from github into the current folder (TUI/you pick)"
-	# And submodules as well
-		descriptive_alias "submodule" "gh repo list -L 100"\
-"| fzf "\
-"| sed 's/[ \t].*//g' "\
-"| xargs -I {} git submodule add https://github.com/{}" \
-	"Clone one of the logged in gh account's repos from github into the current folder (TUI/you pick)"
+function clone
+{
+	if [[ "$1" == "" ]]; then
+		gh repo list -L 100 \
+			| fzf \
+			| sed 's/[ \t].*//g' \
+			| xargs -I {} gh repo clone {} -- --recurse-submodules
+		return
 	fi
-fi
+	# Incase we forget to git clone
+	git clone "$1"
+}
+
+# if command -v fzf &> /dev/null ; then
+# 	if command -v gh &> /dev/null ; then
+# 		descriptive_alias "clone" "gh repo list -L 100"\
+# "| fzf "\
+# "|  "\
+# "|  \
+# 	"Clone one of the logged in gh account's repos from github into the current folder (TUI/you pick)"
+# 	# And submodules as well
+# 		descriptive_alias "submodule" "gh repo list -L 100"\
+# "| fzf "\
+# "| sed 's/[ \t].*//g' "\
+# "| xargs -I {} git submodule add https://github.com/{}" \
+# 	"Clone one of the logged in gh account's repos from github into the current folder (TUI/you pick)"
+# 	fi
+# fi
 
 # Pick a random todo/task item from a markdown file
 function random_number
