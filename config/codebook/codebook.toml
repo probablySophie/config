@@ -29,6 +29,7 @@ words = [
     "portainer",
     "preact",
     "rofi",
+    "sandboxed",
     "serialiser",
     "signable",
     "signifiers",
