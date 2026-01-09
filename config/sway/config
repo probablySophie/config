@@ -83,15 +83,16 @@ seat seat0 xcursor_theme Adwaita
 #
 # Read `man 5 sway-bar` for more information about this section.
 
+# TODO: Does this properly include all of our files?
 include ~/.config/sway/config.d/*
 include /etc/sway/config.d/*
 
-# Including other files :)
-include ~/.config/sway/theme
-include ~/.config/sway/status_bar
-include ~/.config/sway/keymaps
-include ~/.config/sway/custom_app_rules.sh
-include ~/.config/sway/autostart.sh
+# # Including other files :)
+# include ~/.config/sway/conf/theme
+# include ~/.config/sway/conf/status_bar
+# include ~/.config/sway/conf/keymaps
+# include ~/.config/sway/conf/custom_app_rules.sh
+# include ~/.config/sway/conf/autostart.sh
 
 # Borders for floating windows :)
 # exec ~/.config/sway/scripts/borders.sh
