@@ -9,7 +9,7 @@
 name = "rust"
 formatter = { command = "rustfmt" }
 auto-format = false
-language-servers = [ "rust-analyzer" ]#, "harper-ls" ] # I think harper is misbehaving
+language-servers = [ "rust-analyzer", "scls" ]#, "harper-ls" ] # I think harper is misbehaving
 indent = { tab-width = 4, unit = "\t" }
 
 [language-server.rust-analyzer]
@@ -23,6 +23,12 @@ checkOnSave = { command = "clippy", extraArgs = [
 ] }
 cargo = { allFeatures = true }
 procMacro = { enable = true }
+
+[[language]]
+name = "test"
+language-servers = [ "codebook" ]
+file-types = ["test"]
+scope = ""
 
 [[language]]
 name = "latex"
@@ -98,17 +104,17 @@ schemas = [
 
 [[language]]
 name = "markdown"
-language-servers = [ "marksman", "codebook" ]#, "markdown-lsp" ]
+language-servers = [ "marksman", "codebook", "scls" ]
 indent = { tab-width = 4, unit = "\t" }
-
-[language-server.markdown-lsp]
-command = "markdown_lsp"
+comment-tokens = [ "-", "+", "*", "* [ ]", ">", "- [ ]" ]
 
 # Spell checking
 # https://github.com/blopker/codebook
 [language-server.codebook]
 command = "codebook-lsp"
 args = ["serve"]
+# [language-server.codebook.config]
+# logLevel="trace"
 
 [language-server.harper-ls]
 command = "harper-ls"
@@ -132,6 +138,17 @@ auto-format = false
 name = "css"
 language-servers = ["vscode-css-language-server", "tailwindcss-ls"] # vscode-langservers-extracted
 indent = { tab-width = 4, unit = "\t" }
+auto-format = false
+
+[[language]]
+name = "tailwind"
+language-servers = ["vscode-css-language-server", "tailwindcss-ls"]
+indent = { tab-width = 4, unit = "\t" }
+shebangs = [ "tailwind" ]
+scope = "source.css"
+file-types = [ "tcss" ]
+grammar = "css.conf"
+auto-format = false
 
 [[language]]
 name = "javascript"
@@ -158,7 +175,7 @@ indent = { tab-width = 4, unit = "\t" }
 name = "tsx"
 roots = ["deno.json", "deno.jsonc", "package.json", "package.jsonc"]
 file-types = ["tsx"]
-language-servers = ["typescript-language-server"]
+language-servers = ["typescript-language-server", "scls"]
 indent = { tab-width = 4, unit = "\t" }
 
 # [language-server.deno-lsp]
@@ -201,7 +218,7 @@ environment = "node"
 name = "astro"
 roots = ["package.json", "astro.config.mjs"]
 indent = { tab-width = 4, unit = "\t" }
-language-servers = [ "astro-ls" ]
+language-servers = [ "astro-ls", "scls" ]
 # language-server = {command = "astro-ls", args = [ "--stdio" ]}
 # config = { "typescript" = { "tsdk" = "/home/sophie/.bun/bin/tsserver" }, "environment" = "node" }
 
@@ -214,6 +231,32 @@ indent = { tab-width = 2, unit = " " }
 name = "lua"
 indent = { tab-width = 4, unit = "\t" }
 # https://github.com/LuaLS/lua-language-server
+
+# https://github.com/helix-editor/helix/wiki/Language-Server-Configurations#svelte
+[[language]]
+name = "svelte"
+indent = { tab-width = 4, unit = "\t" }
+
+
+# https://github.com/estin/simple-completion-language-server
+[language-server.scls]
+command = "simple-completion-language-server"
+
+[language-server.scls.config]
+feature_words = false                # enable completion by word
+feature_snippets = true              # enable snippets
+snippets_first = true                # completions will return before snippets by default
+snippets_inline_by_word_tail = false # suggest snippets by WORD tail, for example text `xsq|` become `x^2|` when snippet `sq` has body `^2`
+feature_unicode_input = false        # enable "unicode input"
+feature_paths = false                # enable path completion
+feature_citations = false            # enable citation completion (only on `citation` feature enabled)
+
+
+# write logs to /tmp/completion.log
+[language-server.scls.environment]
+RUST_LOG = "info,simple-completion-language-server=info"
+LOG_FILE = "/tmp/completion.log"
+
 
 # TODO: Markdoc LSP
 # https://github.com/helix-editor/helix/wiki/Language-Server-Configurations#markdoc
