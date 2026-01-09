@@ -1,4 +1,1 @@
-{
-    "theme": "dark",
-    "docs": "css/html/http/javascript/lua~5.4/dom/astro/bash/deno~2/docker/drupal~8/git/jq/jsdoc/latex/love/mariadb/markdown/nginx/php/rust/sass/sqlite/typescript/vite/web_extensions"
-}
+{"theme":"dark","docs":"astro/bash/css/deno~2/docker/drupal~8/git/html/http/javascript/jq/jsdoc/latex/lua~5.5/love/mariadb/markdown/nginx/php/rust/sass/sqlite/tailwindcss/typescript/vite/dom/web_extensions"}
