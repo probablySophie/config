@@ -13,6 +13,9 @@ exec /usr/bin/kdeconnectd
 #     #exec_always kanshi
 #     exec_always pkill kanshi; exec kanshi
 
+# TODO: A clipboard manager
+# TODO A network manager?
+
 # Notifications
 exec swaync # https://github.com/ErikReider/SwayNotificationCenter
 
