@@ -1,0 +1,16 @@
+[[snippets]]
+prefix = "---"
+scope = [ "typescript", "astro", "tsx", "typesscriptreact", "javascriptreact" ]  # language id https://code.visualstudio.com/docs/languages/identifiers#_known-language-identifiers
+body = """---
+tags: []
+created: ""
+name: ""
+# References:
+---
+"""
+description = "log at debug level"
+
+# TODO: JSDoc commetns
+
+[[snippets]]
+prefix = ""

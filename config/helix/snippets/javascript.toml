@@ -1,0 +1,4 @@
+[[snippets]]
+prefix = "sleep"
+scope = [ "javascript", "javascriptreact", "typescript", "typescriptreact" ]
+body="await new Promise(r => setTimeout(r, 1000));"

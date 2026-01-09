@@ -1,0 +1,20 @@
+[[snippets]]
+prefix = "struct"
+scope = ["rust"]
+body = "struct $1\n{\n\t/* todo: */\n}\nimpl $1\n{\n\t/* todo: */\n}"
+
+[[snippets]]
+prefix = "derive"
+scope = ["rust"]
+body = "#[derive($1)]"
+
+[[snippets]]
+prefix = "file to string"
+scope = ["rust"]
+body = "let file_string = std::fs::read_to_string(\"my_file.txt\").expect(\"TODO\");"
+
+[[snippets]]
+prefix = "switch (match)"
+scope = ["rust"]
+body = "match $1 {\n\t// Ok(v) => { },\n\n}"
+description = "A reminder that rust uses match instead of switch/case"

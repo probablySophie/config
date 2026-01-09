@@ -1,0 +1,60 @@
+# https://github.com/estin/simple-completion-language-server?tab=readme-ov-file#snippets
+[[snippets]]
+prefix = "component"
+scope = [ "typescriptreact" ]
+body="""
+interface $1Props {}
+interface $1State {}
+
+class $1 extends Component<$1Props, $1State>
+{
+	constructor(props: $1Props)
+	{
+		super(props);
+	}
+	// componentDidMount(): void {}
+	// componentWillUnmount(): void {}
+
+	// shouldComponentUpdate(nextProps, nextState, nextContext): boolean { return true }
+	// componentDidUpdate(prevProps, prevState, snapshot): void {}	
+
+	render()
+	{
+		return <div>
+
+		</div>
+	}	
+}"""
+description = "A preact Class Component"
+
+[[snippets]]
+prefix = "function_component"
+scope = [ "typescriptreact" ]
+body="""
+interface $1Props {}
+
+function $1(props: $1Props)
+{
+	return <div>
+
+	</div>
+}
+"""
+description = "A simple TSX function component"
+
+[[snippets]]
+prefix = "ul"
+scope = [ "typescriptreact" ]
+body = "<ul>$1</ul>"
+[[snippets]]
+prefix = "li"
+scope = [ "typescriptreact" ]
+body = "<li>$1</li>"
+[[snippets]]
+prefix = "div"
+scope = [ "typescriptreact" ]
+body = "<div>$1</div>"
+[[snippets]]
+prefix = "input"
+scope = [ "typescriptreact" ]
+body = "<input type=\"$1\" />"

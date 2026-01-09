@@ -1,0 +1,18 @@
+[[snippets]]
+prefix = "---"
+scope = [ "markdown" ]  # language id https://code.visualstudio.com/docs/languages/identifiers#_known-language-identifiers
+body = """---
+tags: []
+created: ""
+name: ""
+# References:
+---
+"""
+description = "Simple frontmatter inserting"
+
+[[snippets]]
+prefix = "```"
+scope = [ "markdown" ]
+body = """```
+```"""
+description = "A code block"
