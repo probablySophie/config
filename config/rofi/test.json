@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Firefox",
+        "command": "flatpak run org.mozilla.firefox",
+        "icon": "firefox"
+    },
+    {
+        "name": "Terminal",
+        "command": "alacritty",
+        "icon": "terminal"
+    },
+    {
+        "name": "gnome-disks"
+    },
+    {
+        "name": "Browse Music",
+        "command": "rofi -filebrowser-directory ~/Music/ -filebrowser-command 'mpv' -show filebrowser",
+        "icon": "music"
+    }
+]
