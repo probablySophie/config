@@ -12,6 +12,10 @@
 * [ ] A nice selector to open ssh mode, regular run mode, and other custom ones
 * Steal some of `~/.config/rofi/rofi/scripts/launcher_t4`'s homework
 
+## Scripts/Action Menus to maybe make
+
+* Process Killer: `ps -ef | fzf | awk '{print $2}' | xargs -r kill -9` ([source](https://github.com/junegunn/fzf/blob/master/ADVANCED.md))
+
 ## Look At
 
 * [ ] [MPV Scripts](https://github.com/stax76/mpv-scripts) - controlling the music player with Rofi
