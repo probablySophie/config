@@ -37,6 +37,12 @@ vim.keymap.set('n', '<A-left>', ':bprev<CR>:redraw<CR>', { desc = 'Previous Buff
 vim.keymap.set('n', '<A-right>', ':bnext<CR>:redraw<CR>', { desc = 'Next Buffer' });
 
 --
+-- Folding
+--
+vim.keymap.set('n', 'ff', 'za', { desc = 'Toggle Fold' });
+
+
+--
 -- LSP Commands
 -- https://neovim.io/doc/user/lsp.html#lsp-defaults
 --
