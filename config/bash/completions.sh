@@ -1,23 +1,4 @@
 
-#
-# Completions & installing them if they don't exist (and are installable)
-#
-
-# Cargo completion :)
-
-if [[ -f ~/.local/share/bash-completion/completions/rustup ]]; then
-	# Do nothing, the completions are already installed :)
-	printf "";
-else
-	# Make sure rustup is installed
-	if command -v rustup &> /dev/null
-		then
-			# Do the thing
-			mkdir -p ~/.local/share/bash-completion/completions
-			rustup completions bash >> ~/.local/share/bash-completion/completions/rustup
-			rustup completions bash cargo >> ~/.local/share/bash-completion/completions/cargo
-		fi
-fi
 
 
 # Heavily based on https://julienharbulot.com/bash-completion-tutorial.html
