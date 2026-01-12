@@ -15,7 +15,7 @@ add_source "colours.sh"
 add_source "tmux.sh"
 add_source "welcome.sh"
 add_source "git.sh"
-add_source "completions.sh"
+# add_source "completions.sh"
 add_source "wsl.sh"
 add_source "timezone.sh"
 add_source "loading.sh"
@@ -25,6 +25,9 @@ if command -v podman &> /dev/null ; then
 	add_source "podman_devcontainers.sh"
 fi
 
+# Source completions
+mkdir -p ~/.local/completions
+for f in "$HOME/.local/completions"/*.sh; do source $f; done
 
 # Make the timezone file if it doesn't exist.
 if [[ ! -f "$HOME/.config/bash/timezone.sh" ]]; then
