@@ -1,4 +1,5 @@
 __tmuxx_save_file="$HOME/.local/share/tmuxx/saved_session.json";
+mkdir -p "$HOME/.local/share/tmuxx";
 
 # All the values that we want to query. They're stored in a JSON object as "value_name": "value_value"
 session_values=("session_id" "session_name" "session_path" "session_windows");
