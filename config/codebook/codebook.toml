@@ -29,6 +29,7 @@ words = [
     "podman",
     "portainer",
     "preact",
+    "ripgrep",
     "rofi",
     "sandboxed",
     "serialiser",
