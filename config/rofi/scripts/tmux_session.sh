@@ -8,7 +8,8 @@ function tmux_sessions()
 TMUX_SESSION=$( (echo new; tmux_sessions) | rofi -dmenu -p "Select tmux session")
 
 if [[ x"new" = x"${TMUX_SESSION}" ]]; then
-    rofi-sensible-terminal -e tmux new-session &
+    # rofi-sensible-terminal -e tmux new-session &
+    alacritty -e tmux new-session &
 elif [[ -z "${TMUX_SESSION}" ]]; then
     echo "Cancel"
 else
