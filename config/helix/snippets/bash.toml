@@ -1,0 +1,30 @@
+[[snippets]]
+prefix = "for (item in array array loop)"
+scope = ["bash"]
+body = "for item in \"${MY_ARR[@]}\"; do\n\tprintf \"\t$item\n\"\ndone"
+description = "Loop over an array's items"
+
+[[snippets]]
+prefix = "for (i in array length)"
+scope = ["bash"]
+body = """for ((i=0; i<${#$1[@]}; i++)); do
+	printf "${$1[$i]}\n";
+done"""
+description = "Loop over indexes in an array"
+
+[[snippets]]
+prefix = "while (line in file loop)"
+scope = ["bash"]
+body = """while read line; do
+	echo "$line";
+done < "$1" """
+description = "Loop over lines in a file"
+
+[[snippets]]
+prefix = "for (files in a directory loop)"
+scope = ["bash"]
+body = """for filename in ./*; do
+	printf "${filename}\n";
+done"""
+description = "Loop over files in a directory (name/path, not contents)"
+
