@@ -4,61 +4,81 @@
 
 
 # Create an alias that runs a specific file, but ONLY if the file exists
+# This is mostly for things like app images
 safealias_file() # safealias_file FILEPATH COMMAND
-{ 
-	if [ -f $1 ]; then
-		
-		alias $2="${1}"
-
-	fi
-	# And custom command descriptions
-	if [[ $3 ]]; then
-		custom_command "$2" "$3"
-	fi
+{
+	# If $1 exists as a file, alias safely for them
+	if [ -f $1 ]; then alias $2="${1}"; fi
+	# And create custom command descriptions with $3 if provided
+	if [[ $3 ]]; then custom_command "$2" "$3"; fi
 }
 
 descriptive_alias()
 {
 	alias $1="${2}"
-	if [[ $3 ]]; then
-		custom_command "$1" "$3"
-	fi
+	if [[ $3 ]]; then custom_command "$1" "$3"; fi
 }
 
 # Create an alias that runs a specific command, but ONLY if the command exists
 # Useful for overwriting default commands with funky drop-in replacements
 safealias_command() # safealias_command COMMAND_TO_CHECK ALIAS
 {
-	if command -v $1 &> /dev/null ; then
-		alias $2="${1}"
-	fi
-	if [[ $3 ]]; then
-		custom_command "$2" "$3"
-	fi
+	# If the command $1 exists, alias $2 to $1
+	if command -v $1 &> /dev/null ; then alias $2="${1}"; fi
+	# If $3 exists, add it as a description to `?`
+	if [[ $3 ]]; then custom_command "$2" "$3"; fi
 }
 
 safealias_file $HOME/AppImages/love*.AppImage love "Run Love2D" # Love2D :)
 
-	
-# Recursively get all instances of TODO in (non-hidden) files
-descriptive_alias "todo" \
-	"grep -r --exclude-dir='.*' --exclude-dir='node_modules' 'TODO:' *" \
-	"Recursively list all instances of 'TODO:' in non-hidden files"
-descriptive_alias "todo1" \
-	"grep -m 1 -r --exclude-dir='.*' --exclude-dir='node_modules' 'TODO:' *" \
-	"Recursively list only the first instance of 'TODO:' per non-hidden file"
+custom_command "todo" "Recirsively get and list all instances of 'TODO:' in files in \$PWD"
+function todo
+{
+	if command -v rg &> /dev/null; then rg "TODO:" --trim --max-columns=150;
+	else grep -r --exclude-dir='.*' --exclude-dir='node_modules' 'TODO:' *
+	fi
+}
 
-FZF_PREVIEW_FILES=" fzf -m --print0 --preview 'bat --color=always {}' --bind 'focus:transform-header:file --brief {}' "
+custom_command "todo1" "Recirsively get and list the first instance of 'TODO:' in files in \$PWD"
+function todo1
+{
+	if command -v rg &> /dev/null; then rg "TODO:" --trim --max-columns=150 -m 1;
+	else grep -m 1 -r --exclude-dir='.*' --exclude-dir='node_modules' 'TODO:' *
+	fi
+}
 
 # Does also escape other chars as I run into them
 function escape_spaces { sed -e 's/ /\\ /g' -e 's/&/\\&/g' -e 's/(/\\(/g' -e 's/)/\\)/g' -e 's/\x0//g' ; }
-custom_command "escape_spaces" "Escape spaces from the piped in input"
+custom_command "escape_spaces" "Escape spaces (and other rude chars) from the piped in input"
 
+# Open the piped values in the editor (but only if there ARE piped values)
 function open_in_editor { xargs --no-run-if-empty -0 -o ${EDITOR}; }
 
 # https://github.com/junegunn/fzf
 function fzf_preview_files {
-	fzf -m --print0 --preview "bat --color=always {}" --bind "focus:transform-header:file --brief {}"
+
+	# Rename the little 'header' above the search box to be info about the current file
+	local FZF_FOCUS_RENAME="focus:transform-header:file --brief {}";
+
+	local FZF_PREVIEW='cat {}';
+	if [[ -f "$HOME/.config/bash/preview_file.sh" ]]; then
+		# Use our fancy viewer if available
+		FZF_PREVIEW='. ~/.config/bash/preview_file.sh {} $FZF_PREVIEW_LINES $FZF_PREVIEW_COLUMNS';
+	elif command -v bat &> /dev/null; then
+		# Use bat as a fallback if available
+		FZF_PREVIEW="bat --color=always {}";
+	fi
+
+	# On start and resize, if the ratio is < 2.5 then preview top, else preview right
+	local FZF_RESIZE_PREVIEW_TRANSFORMER='start,resize:transform:if [[ $(( $FZF_COLUMNS / $FZF_LINES )) < 2.5 ]]; then echo "change-preview-window:up"; else echo "change-preview-window:right"; fi'
+
+	fzf \
+		-m \
+		--print0 \
+		--preview "$FZF_PREVIEW" \
+		--preview-window right,1,border-horizontal,50% \
+		--bind "${FZF_FOCUS_RENAME}" \
+		--bind "${FZF_RESIZE_PREVIEW_TRANSFORMER}"
 }
 
 # Can we use RipGrep instead of grep?
@@ -70,6 +90,8 @@ else
 fi
 custom_command "todoedit" "Open an FZF window, pick 'TODO:' files, and open them in \$EDITOR"
 
+function todofile { fzf_preview_files "TODO.md" | escape_spaces | open_in_editor; }
+custom_command "todofile" "Open an FZF window, pick files named 'TODO.md' and open then in \$EDITOR"
 
 alias gitwhoami="git config --list | grep \"user\"" # because I don't want to FULLY dox myself
 
@@ -100,8 +122,6 @@ fi
 # Cat → Bat
 if command -v bat &> /dev/null ; then
 	alias cat='bat'
-#else
-	# Nothing
 fi
 
 descriptive_alias 'pysource' "source .venv/bin/activate" "Source .venv/bin/active (for python)"
@@ -117,7 +137,7 @@ alias man="man --pager='less --mouse  --wheel-lines=3'"
 _mkd() { mkdir -p $1; cd $1; } # Make a directory and cd into it
 descriptive_alias "mkd" "_mkd" "Make a new directory and CD into it"
 
-descriptive_alias "hxo" "echo \"\$(<.helix/tabs.txt)\" | escape_spaces | xargs hx"
+descriptive_alias "hxo" "echo \"\$(<.helix/tabs.txt)\" | escape_spaces | xargs -r hx"
 
 weather() { curl "https://wttr.in/$1?format=%l:+%C+%t+%x\nFeels+like+%f\nUV+index:+%u\nCurrent+Rain:+%p" ;}
 custom_command "weather" "Get the current weather in \$1!"
@@ -125,40 +145,22 @@ custom_command "weather" "Get the current weather in \$1!"
 
 # TUI clone one of my github repos
 # Requres fzf for the TUI niceness & gh for the github part
+custom_command "clone" "List repos belonging to the current 'gh' signed in account and clone the selected one"
 function clone
 {
 	if [[ "$1" == "" ]]; then
 		gh repo list -L 100 \
 			| fzf \
 			| sed 's/[ \t].*//g' \
-			| xargs -I {} gh repo clone {} -- --recurse-submodules
+			| xargs -r -I {} gh repo clone {} -- --recurse-submodules
 		return
 	fi
-	# Incase we forget to git clone
+	# Incase we forget to `git clone` and just tried to `clone`
 	git clone "$1"
 }
 
-# if command -v fzf &> /dev/null ; then
-# 	if command -v gh &> /dev/null ; then
-# 		descriptive_alias "clone" "gh repo list -L 100"\
-# "| fzf "\
-# "|  "\
-# "|  \
-# 	"Clone one of the logged in gh account's repos from github into the current folder (TUI/you pick)"
-# 	# And submodules as well
-# 		descriptive_alias "submodule" "gh repo list -L 100"\
-# "| fzf "\
-# "| sed 's/[ \t].*//g' "\
-# "| xargs -I {} git submodule add https://github.com/{}" \
-# 	"Clone one of the logged in gh account's repos from github into the current folder (TUI/you pick)"
-# 	fi
-# fi
-
 # Pick a random todo/task item from a markdown file
-function random_number
-{
-	printf "$((1 + $RANDOM % $1))"
-}
+function random_number { printf "$((1 + $RANDOM % $1))"; }
 
 custom_command "random_item" "Picks a random item/task from a given Markdown file."
 function random_item
