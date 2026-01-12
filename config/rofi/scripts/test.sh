@@ -1,4 +1,4 @@
-# A test Rofi script
+# A test Rofi script for running other scripts
 
 # Examples
 # https://github.com/davatorium/rofi-scripts
