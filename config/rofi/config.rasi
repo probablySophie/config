@@ -1,6 +1,8 @@
 
 configuration {
 	modes: "window,drun,run,ssh,test";
+	terminal: "alacritty";
+	
 /*	font: "mono 12";*/
 /*	location: 0;*/
 /*	yoffset: 0;*/
@@ -14,7 +16,6 @@ configuration {
 /*	on-menu-canceled: ;*/
 /*	on-menu-error: ;*/
 /*	on-screenshot-taken: ;*/
-/*	terminal: "xdg-terminal";*/
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} {ssh-client} {host} [-p {port}]";*/
 /*	run-command: "{cmd}";*/
