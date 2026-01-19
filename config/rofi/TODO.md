@@ -1,6 +1,8 @@
 # Rofi Todo
 
-[Source](https://github.com/davatorium/rofi)
+[Source](https://github.com/davatorium/rofi) | [Homepage](https://davatorium.github.io/rofi/)
+
+**What of these can be done with/modifying `./json_helper.sh`?**
 
 * [x] A config for `Mod+Space` that gives the ssh, file, and other multi/combo options
 	* [x] Can we include custom menus in the `combi`/mode-switch?

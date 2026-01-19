@@ -14,6 +14,9 @@ Alternatively... do none of this and stick with KDE.
 * [ ] [`swayidle`](https://github.com/swaywm/swayidle) for idle management (going to sleep after a given time period) ([Arch Wiki](wiki.archlinux.org/title/Sway#Idle))
 * [ ] [`swaylock`](https://github.com/swaywm/swaylock) for screen locking?
 * [ ] [`swaybg`](https://github.com/swaywm/swaybg) for wallpaper setting/managing?
+* [ ] Figure out a global dark mode so apps actually show their dark modes (kde, gnome)
+* [ ] More fancieness with `swaync`? (`../swaync/swaync.md`)
+* [ ] Get terminal/tmux clipboards working
 
 ## Find
 
