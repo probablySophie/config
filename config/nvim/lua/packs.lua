@@ -1,5 +1,5 @@
 --
--- Packages
+-- Packages / Plugins
 -- https://neovim.io/doc/user/pack.html
 --
 
@@ -8,6 +8,7 @@ vim.pack.add({
 	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter' }, -- Treesitter integration
 	{ src = 'https://github.com/catppuccin/nvim' }, -- Colour Scheme,
 	{ src = 'https://github.com/folke/which-key.nvim' },
+	{ src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim' }, -- Markdown rendering
 });
 
 -- 
@@ -18,4 +19,4 @@ vim.pack.add({
 -- require "plugins.treesitter";
 -- require "plugins.catppuccin";
 require "plugins.whichkey";
-
+require "plugins.rendermarkdown";
