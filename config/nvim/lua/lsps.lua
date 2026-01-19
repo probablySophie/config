@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd({"CursorHoldI", "CursorHold"}, {
 			vim.print("Relative window currently open");
 			return
 		end
-	
+
 		-- Open a diagnostic float :)
 		local float_bufnr, float_winid = vim.diagnostic.open_float();
 	end
