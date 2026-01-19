@@ -2,7 +2,6 @@
 #	Custom Alias Files
 #
 
-
 # Create an alias that runs a specific file, but ONLY if the file exists
 # This is mostly for things like app images
 safealias_file() # safealias_file FILEPATH COMMAND
@@ -129,9 +128,6 @@ descriptive_alias 'pysource' "source .venv/bin/activate" "Source .venv/bin/activ
 # descriptive_alias 'llama' "docker exec -it ollama ollama run llama3" "Run llama3 using ollama"
 # descriptive_alias 'codellama' "docker exec -it ollama ollama run codellama" "Run codellama using ollama"
 
-# Use less to view manual pages so we can SCROLLLLLL
-alias man="man --pager='less --mouse  --wheel-lines=3'"
-
 # ~ ~ ~ ~ CUSTOM COMMANDS ~ ~ ~ ~
 
 _mkd() { mkdir -p $1; cd $1; } # Make a directory and cd into it
@@ -142,22 +138,8 @@ descriptive_alias "hxo" "echo \"\$(<.helix/tabs.txt)\" | escape_spaces | xargs -
 weather() { curl "https://wttr.in/$1?format=%l:+%C+%t+%x\nFeels+like+%f\nUV+index:+%u\nCurrent+Rain:+%p" ;}
 custom_command "weather" "Get the current weather in \$1!"
 
-
-# TUI clone one of my github repos
-# Requres fzf for the TUI niceness & gh for the github part
-custom_command "clone" "List repos belonging to the current 'gh' signed in account and clone the selected one"
-function clone
-{
-	if [[ "$1" == "" ]]; then
-		gh repo list -L 100 \
-			| fzf \
-			| sed 's/[ \t].*//g' \
-			| xargs -r -I {} gh repo clone {} -- --recurse-submodules
-		return
-	fi
-	# Incase we forget to `git clone` and just tried to `clone`
-	git clone "$1"
-}
+# Custom clone command to clone github repos
+add_source "commands/clone.sh";
 
 # Pick a random todo/task item from a markdown file
 function random_number { printf "$((1 + $RANDOM % $1))"; }

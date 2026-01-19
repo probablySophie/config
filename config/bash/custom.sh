@@ -1,13 +1,8 @@
 
 __BASH_CONFIG_PATH="$HOME/.config/bash";
 
-add_source ()
-{
-	if [[ -f "$__BASH_CONFIG_PATH/$1" ]]
-	then
-		source "$__BASH_CONFIG_PATH/$1"
-	fi
-}
+# Only source the file if it actually exists
+add_source () { if [[ -f "$__BASH_CONFIG_PATH/$1" ]]; then source "$__BASH_CONFIG_PATH/$1"; fi }
 
 add_source "about.sh"
 add_source "alias.sh"
@@ -74,6 +69,18 @@ if command -v yazi &> /dev/null; then
 	}
 fi
 
+# ~ ~ ~ ~ Man Pages ~ ~ ~ ~
+
+LESS_PAGER_CONF="--mouse --wheel-lines=3";
+
+# Use bat for highlighting, but still less so we can mouse scroll in tmux
+if command -v bat &> /dev/null; then
+	export MANPAGER="bat -plman --pager=\"less --RAW-CONTROL-CHARS --quit-if-one-screen ${LESS_PAGER_CONF}\""
+else
+	# Use less to view manual pages so we can SCROLLLLLL
+	export MANPAGER="less ${LESS_PAGER_CONF}"
+fi
+
 # ~ ~ ~ ~ EXPORTS ~ ~ ~ ~
 
 if command -v hx &> /dev/null; then
@@ -85,5 +92,3 @@ if command -v nap &> /dev/null; then
 	export NAP_CONFIG="$HOME/.config/nap/config.yaml"
 	custom_command "nap" "The snippet manager we use"
 fi
-
-export XDG_CONFIG_HOME="$HOME/.config"
