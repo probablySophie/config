@@ -8,8 +8,6 @@ require ("lsps"); -- LSP config stuff & diagnostic stuff
 	https://github.com/SylvanFranklin/.config/blob/main/nvim/init.lua
 ]]
 
-local a = 0;
-
 --
 -- Folds
 --
