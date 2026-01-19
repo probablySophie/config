@@ -1,6 +1,26 @@
+--- @diagnostic disable: lowercase-global
+
+--- @class PickerOpts
+--- @field buf_name string? The buffer name to use
+--- @field name string? The buffer/general name to use
+--- @field win_width number? The picker's window's width
+--- @field win_height number? The picker's window's height
+--- @field win_name string? The picker's window's name to use
+--- @field win_focus boolean? Should the new window be focused on open
+--- @field win_style string? The picker's window's style (default minimal)
+--- @field x number? The picker's window's x/col location
+--- @field y number? The picker's window's y/row location
+
+--- @param opts PickerOpts;
 function create_window(opts)
 	-- Create Buffer
 	local buf = vim.fn.bufnr( opts.buf_name or opts.name or "temp", true );
+
+	local win_id = vim.api.nvim_get_current_win();
+	local win_width,win_height = vim.api.nvim_win_get_width( win_id ), vim.api.nvim_win_get_height( win_id );
+
+	if opts.win_width == 0 then opts.win_width = win_width; end
+	if opts.win_height == 0 then opts.win_height = win_height; end
 
 	-- Create Window
 	local window_id = vim.api.nvim_open_win(
@@ -50,7 +70,7 @@ function open_picker(opts, after)
 		term = true,
 		on_exit = function(job_id, _data, event)
 			local selections = read_printed_lines(buf);
-		
+
 			after( opts, current, selections );
 
 			-- Close our picker buffer
@@ -63,6 +83,9 @@ function open_picker(opts, after)
 	vim.cmd.startinsert();
 end
 
+--- Read the printed lines that are (presumably) output by a command run inside a given buffer
+--- This is for after the command has finished running 
+--- @param buf number The buffer's id number
 function read_printed_lines( buf )
 	local lines = {}
 
@@ -79,6 +102,9 @@ end
 
 -- edit_each_line(selections, function(s) return string.gsub( s, " ", "\\ " ); end)
 
+--- Run a given function on each line in a given table/array of strings
+--- @param selections string[] the lines to act on
+--- @param func function the function that will run on each line `function(str) return str; end`
 function edit_each_line( selections, func )
 	if type(func) ~= "function" or type(selections) ~= "table" then return selections; end
 	for i = 1,#selections do
@@ -86,3 +112,5 @@ function edit_each_line( selections, func )
 	end
 	return selections
 end
+
+--- @diagnostic enable
