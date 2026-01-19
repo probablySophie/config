@@ -60,13 +60,17 @@ vim.keymap.set( 'n', '<leader>h', ':lua vim.lsp.buf.signature_help()<CR>', { des
 --
 -- Pickers
 --
+
+-- Fancy previewing with fzf :)
+local fzf_preview_cmd = 'if command -v bat &> /dev/null; then bat --color=always {}; else cat {}; fi';
+
 require "pickers";
 vim.keymap.set( 'n', '<C-o>', function() open_picker({
-	command = "fzf -m",
-	-- win_width = 0,
-	-- win_height = 0,
-	-- x = 0,
-	-- y = 0,
+	command = "fzf -m --preview '"..fzf_preview_cmd.."' --preview-window=top",
+	win_width = 0,
+	win_height = 0,
 	-- win_style = ""
 }) end, { desc = 'Open file picker' } )
--- TODO: Have a little preview of the files
+
+require "custom.tabpage_picker";
+vim.keymap.set( 'n', '<leader>b', function() TABPAGE_PICKER() end, { desc = 'Open tabpage picker' } )
