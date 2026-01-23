@@ -25,6 +25,13 @@ local new_buffer = vim.api.nvim_create_buf(
 );
 ```
 
+## Buffer Info
+
+```lua
+local buf = vim.api.nvim_get_current_buf();
+local buf_type = vim.bo[buf].filetype; -- The buffer's type, e.g. 'help', 'markdown', 'lua'
+```
+
 ## Making a floating window
 ```lua
 local buffer = 1;
