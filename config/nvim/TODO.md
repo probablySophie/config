@@ -8,7 +8,7 @@ https://github.com/MeanderingProgrammer/render-markdown.nvim
 
 * [x] [Folding](https://neovim.io/doc/user/fold.html)
 * [ ] Goto file `gf` should open in a new tab ideally (`:noremap <C-w>gf`)
-* [ ] An auto-command that checks for multiple opened buffers (nvim file1.txt file2.txt) and opens them as tab-pages (nvim -p file1.txt file2.txt)
+* [x] An auto-command that checks for multiple opened buffers (nvim file1.txt file2.txt) and opens them as tab-pages (nvim -p file1.txt file2.txt)
 * [ ] Rebind some selection-y things to work the same as Helix (https://neovim.io/doc/user/motion.html)
 	* [x] `gh` goto start of line
 	* [x] `gl` goto end of line
@@ -33,4 +33,5 @@ https://github.com/MeanderingProgrammer/render-markdown.nvim
 ## Auto Commands?
 
 * [ ] Reddit: [Share your favourite auto-commands](https://www.reddit.com/r/neovim/comments/1i2xw2m/share_your_favorite_autocmds/)
-
+* [x] Close popups & search highlighting on `esc` ([example with `q`](https://www.reddit.com/r/neovim/comments/1i2xw2m/share_your_favorite_autocmds/m7ies9g/))
+* [ ] If lua, trim trailing whitespace on save
