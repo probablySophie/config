@@ -1,14 +1,28 @@
 -- Keymaps!
-vim.keymap.set({ 'v', 'i' }, '<C-s>', '<C-O>:write<CR>', { desc = 'Save' }); -- insert & visual mode save
-vim.keymap.set('n', '<C-s>', ':write<CR>'); -- normal mode save
+
+--- Takes a vim action, calls it and then redraws
+--- This is so that we can have keybinds do things without them showing in the command line
+local function action_and_redraw( action )
+	return function()
+		action();
+		vim.cmd.redraw();
+	end
+end
+--- Perform an action without redrawing
+local function action( action_cmd )
+	return function() action_cmd(); end
+end
+
+
+vim.keymap.set({ 'v', 'i', 'n' }, '<C-s>', action( vim.cmd.write ), { desc = 'Save' }); -- insert & visual mode save
 -- vim.keymap.set('n', '<leader>r', ':update<CR> :source<CR>') -- reload config
 
-vim.keymap.set('n', '<leader>wq', ':quitall<CR>', { desc = 'Quit All' }); -- Quit all 
+vim.keymap.set('n', '<leader>wq', action( vim.cmd.quitall ), { desc = 'Quit All' }); -- Quit all
+vim.keymap.set('n', '<leader>q', action( vim.cmd.quit ), { desc = 'Quit Current' });
 
-vim.keymap.set({ 'n' }, 'r', ':redo<CR>', { desc = 'Redo' });
-vim.keymap.set({ 'n' }, 'u', ':undo<CR>', { desc = 'Undo' });
+vim.keymap.set({ 'n' }, 'r', action( vim.cmd.redo ), { desc = 'Redo' });
+vim.keymap.set({ 'n' }, 'u', action( vim.cmd.undo ), { desc = 'Undo' });
 
--- vim.keymap.set('n', '<leader>wq', ':quit<CR>', { desc = 'Close Tab/Buffer' } ) -- Quit singular
 
 --
 -- Navigation
@@ -22,8 +36,8 @@ vim.keymap.set({'v', 'n'}, 'gl', '$', { desc = 'Goto end of line' });
 -- Tabs
 -- https://neovim.io/doc/user/tabpage.html
 --
-vim.keymap.set({ 'n' }, '<C-left>', ':tabprev<CR>:redraw<CR>', { desc = 'Previous Tab' });
-vim.keymap.set({ 'n' }, '<C-right>', ':tabnext<CR>:redraw<CR>', { desc = 'Next Tab' });
+vim.keymap.set({ 'n' }, '<C-left>', action_and_redraw( vim.cmd.tabprev ), { desc = 'Previous Tab' });
+vim.keymap.set({ 'n' }, '<C-right>', action_and_redraw( vim.cmd.tabnext ), { desc = 'Next Tab' });
 vim.keymap.set({ 'n' }, 'W', ':q<CR>', { desc = 'Close Tab' });
 -- TODO: Only tab close if saved
 for i = 1,9 do vim.keymap.set({ 'n', 't' }, '<leader>w' .. i, '<Cmd>tabnext ' .. i .. '<CR>', { desc = 'Open Tab #' .. i } ); end
@@ -41,6 +55,16 @@ vim.keymap.set('n', '<A-right>', ':bnext<CR>:redraw<CR>', { desc = 'Next Buffer'
 --
 vim.keymap.set('n', 'ff', 'za', { desc = 'Toggle Fold' });
 
+--
+-- Misc
+--
+
+-- General escape command
+require "custom.kill_extra_windows";
+vim.keymap.set( 'n', '<Esc>', function()
+	vim.cmd('nohlsearch'); -- Clear highlights
+	KILL_EXTRAS();
+end )
 
 --
 -- LSP Commands
