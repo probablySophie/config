@@ -60,9 +60,9 @@ function fzf_preview_files {
 	local FZF_FOCUS_RENAME="focus:transform-header:file --brief {}";
 
 	local FZF_PREVIEW='cat {}';
-	if [[ -f "$HOME/.config/bash/preview_file.sh" ]]; then
+	if [[ -f "$HOME/.config/bash/commands/preview_file.sh" ]]; then
 		# Use our fancy viewer if available
-		FZF_PREVIEW='. ~/.config/bash/preview_file.sh {} $FZF_PREVIEW_LINES $FZF_PREVIEW_COLUMNS';
+		FZF_PREVIEW='. ~/.config/bash/commands/preview_file.sh {} $FZF_PREVIEW_LINES $FZF_PREVIEW_COLUMNS';
 	elif command -v bat &> /dev/null; then
 		# Use bat as a fallback if available
 		FZF_PREVIEW="bat --color=always {}";
