@@ -1,0 +1,7 @@
+# https://github.com/eza-community/eza/blob/main/man/eza_colors-explanation.5.md
+# https://github.com/eza-community/eza/blob/main/man/eza_colors.5.md
+# https://github.com/eza-community/eza/blob/main/docs/theme.yml
+
+filenames:
+ # Style TODO.md to be the same as README.md
+ TODO.md: { filename: { foreground: Yellow, is_bold: true, is_underline: true }, icon: { style: { foreground: Yellow } } }
