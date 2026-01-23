@@ -2,6 +2,7 @@ require ("options"); -- General vim/nvim options
 require ("keymaps"); -- Keymaps & Keybinds
 require ("packs"); -- Packs/Plugins
 require ("lsps"); -- LSP config stuff & diagnostic stuff
+require ("autocmds"); -- Auto commands
 --[[
 	People's Configs
 	https://github.com/radleylewis/nvim-lite/blob/master/init.lua
