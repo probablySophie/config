@@ -17,6 +17,7 @@ Alternatively... do none of this and stick with KDE.
 * [ ] Figure out a global dark mode so apps actually show their dark modes (kde, gnome)
 * [ ] More fancieness with `swaync`? (`../swaync/swaync.md`)
 * [ ] Get terminal/tmux clipboards working
+* [ ] VLC
 
 ## Find
 
@@ -35,6 +36,14 @@ Alternatively... do none of this and stick with KDE.
 * [ ] All of the things required for a standalone/usable DE
 	* [Useful addons for sway](https://github.com/swaywm/sway/wiki/Useful-add-ons-for-sway)
 	* [Are we Wayland yet?](https://arewewaylandyet.com/)
+	* [ ] Image viewer (`gwenview?`)
+	* [ ] Font manager?
+	* [ ] PDF Viewer - `okular`?
+	* [ ] System monitor
+
+* [ ] All the random single use things
+	* [ ] Emoji Selector?
+	* [ ] Calculator
 
 ## Fix
 
