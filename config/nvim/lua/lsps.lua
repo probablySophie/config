@@ -19,23 +19,15 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- Show diagnostics on cursor wait BUT only if there's not currently a relative floating window open
 vim.api.nvim_create_autocmd({"CursorHoldI", "CursorHold"}, {
-	callback = function(args)
-
-		if #vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() }) == 0 then return; end
-		--
-		-- Check if there's already a floating window relative to the current window open
-		--
-		local windows = vim.api.nvim_list_wins();
-		local last_window = vim.api.nvim_win_get_config(windows[#windows]);
-		local current_window = vim.api.nvim_get_current_win();
-
-		if last_window.relative == "win" and last_window.win == current_window then
-			vim.print("Relative window currently open");
-			return
+	callback = function()
+		local win = vim.api.nvim_get_current_win();
+		-- Is there an existing window that's already relative to our current window?
+		for _,child_win in ipairs( vim.api.nvim_list_wins() ) do
+			local conf = vim.api.nvim_win_get_config(child_win);
+			if conf.relative == "win" and conf.win == win then return; end
 		end
-
 		-- Open a diagnostic float :)
-		local float_bufnr, float_winid = vim.diagnostic.open_float();
+		vim.diagnostic.open_float();
 	end
 });
 -- Loading/workspace notification
