@@ -101,8 +101,13 @@ alias qq="exit"
 # Rename the current tmux window to the current path
 alias tmr="tmux rename-window ${PWD##*/}"
 
+function dus
+{
+	du -shc --apparent-size .* * 2> >(grep -v 'Permission denied') | sort -hr | less --mouse --wheel-lines=3;
+}
+custom_command "dus" "Get the sizes of all files & folders in the current dir sorted large -> small"
 # Get the size of all files & folders in the current dir (and sort by largest)
-descriptive_alias "dus" "du -sh --apparent-size * | sort -hr" "Get the sizes of all files & folders in the current dir sorted large -> small"
+# descriptive_alias "dus" "du -sh --apparent-size . .* | sort -hr" "Get the sizes of all files & folders in the current dir sorted large -> small"
 
 # Alias top to btm (ClementTsang/bottom)
 safealias_command btm top
