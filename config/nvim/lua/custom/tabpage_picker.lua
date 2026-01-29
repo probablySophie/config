@@ -1,6 +1,7 @@
 --[[
 	A picker for the current tabpages :)
 ]]
+require "../pickers";
 
 local function size_table_row(row, sizes)
 	for key,val in pairs(row) do
@@ -11,7 +12,6 @@ local function size_table_row(row, sizes)
 		end
 	end
 end
-
 
 function TABPAGE_PICKER()
 
@@ -60,7 +60,7 @@ function TABPAGE_PICKER()
 		print_string = print_string .. print_str .. "\n";
 	end
 
-	require "lua.pickers";
+
 	open_picker({
 		command = "printf '" .. print_string .. "' | fzf --scheme=history --tac",
 		win_width = 0,
