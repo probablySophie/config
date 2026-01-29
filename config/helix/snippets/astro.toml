@@ -1,0 +1,8 @@
+[[snippets]]
+prefix = "<ul"
+scope = [ "astro" ]
+body = """<ul>
+	<li></li>
+</ul>
+"""
+description = ""
