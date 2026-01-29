@@ -1,9 +1,28 @@
 
 # TODO: A friend in ~/.config/tmux/menus.conf that uses fzf to list sessions, pick one, and then call this
 
+# TODO: Some form of session that takes a variable or opens an fzf window to select from a list e.g. list local code repos & open a specific set of windows/panes relative to the selected one
+
 # Tmux management & stuff
 # $1 - the json file to load sessions from
 # $2 - the specific session to open
+
+
+# INFO: Example valid JSON
+# [
+#     { "name": "Example", "dir": "~/Documents",
+#         "windows": [
+#             { "name": "Work", "dir": "~/Documents/Work" },
+#             { "name": "Playground", "dir": "~/Code/playground", "active": true,
+#                 "panes": [
+#                     { "cmd": "ls", "name": "Guy" },
+#                     { "height": "10", "split": "v" }
+#                 ]
+#             }
+#         ]
+#     },
+# ]
+
 
 JSON_FILE_PATH="$1";
 
