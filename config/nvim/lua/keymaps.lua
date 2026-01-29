@@ -32,6 +32,9 @@ vim.keymap.set({'v', 'n'}, 'ge', '::$<CR>', { desc = 'Goto end of document' });
 vim.keymap.set({'v', 'n'}, 'gh', '0', { desc = 'Goto start of line' });
 vim.keymap.set({'v', 'n'}, 'gl', '$', { desc = 'Goto end of line' });
 
+vim.keymap.set('n', '<down>', 'gj', { desc = 'Goto the next line (respecting virtual lines)' });
+vim.keymap.set('n', '<up>', 'gk', { desc = 'Goto the previous line (respecting virtual lines)' });
+
 --
 -- Tabs
 -- https://neovim.io/doc/user/tabpage.html
