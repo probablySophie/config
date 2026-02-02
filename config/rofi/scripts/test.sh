@@ -11,6 +11,9 @@ ROFI_CONFIG_PATH="$HOME/.config/rofi";
 function rofi_scripts()
 {
 	ls "${ROFI_CONFIG_PATH}/scripts"
+	if [[ -d "$HOME/.local/rofi_scripts" ]]; then
+		ls "$HOME/.local/rofi_scripts"
+	fi
 }
 function run_rofi_scripts_selection()
 {
@@ -27,7 +30,12 @@ function run_rofi_scripts_selection()
 	else
 		# notify-send "Running ${ROFI_CONFIG_PATH}/scripts/$1";
 		ROFI_RETV=""; # Clear RETV so the script runs as new
-		bash -e "${ROFI_CONFIG_PATH}/scripts/$1";
+
+		if [[ -f "${ROFI_CONFIG_PATH}/scripts/$1" ]]; then
+			bash -e "${ROFI_CONFIG_PATH}/scripts/$1";
+		elif [[ -f "${HOME}/.local/rofi_scripts/$1" ]]; then
+			bash -e "${HOME}/.local/rofi_scripts/$1";
+		fi
 	fi
 }
 function run_rofi_scripts()
