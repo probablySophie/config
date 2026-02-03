@@ -13,8 +13,18 @@ if command -v zypper &> /dev/null ; then
 		file # for Yazi
 		man-pages # Man Pages
 		gh # Github's CLI
+	# Bits for basic containers
+		git
+		unzip
+		wget curl
+		hostname
 	)
 	"${CMD[@]}"
 fi
 
-notify-send "Finished Installing!" -a "zypper.sh"
+sudo zypper in -t pattern devel_C_C++
+
+# No WSL Notifications thanks
+if [[ ! -d "/mnt/c/Program Files/" ]]; then
+	notify-send "Finished Installing!" -a "zypper.sh"
+fi
