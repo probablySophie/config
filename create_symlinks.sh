@@ -56,3 +56,7 @@ if [[ "$(grep -c 'include custom bash setup if it exists' ~/.bashrc)" == "0" ]];
 "fi\n" >> ~/.bashrc
 	printf "Updated ~/.bashrc\n";
 fi
+
+if [[ ! -f ~/.config/bash/timezone.sh ]]; then
+	printf "# Run \`timedatectl list-timezones\` to list all timezones \n""# You can grep for your country\/city to find your exact timezone\n""TZ='UTC'" > ~/.config/bash/timezone.sh
+fi
