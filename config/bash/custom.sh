@@ -16,9 +16,9 @@ add_source "timezone.sh"
 add_source "loading.sh"
 
 # This one requires we have podman installed
-if command -v podman &> /dev/null ; then
-	add_source "podman_devcontainers.sh"
-fi
+# if command -v podman &> /dev/null ; then
+# 	add_source "podman_devcontainers.sh"
+# fi
 
 # Source completions
 mkdir -p ~/.local/completions
