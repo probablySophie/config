@@ -12,6 +12,7 @@ if command -v flatpak &> /dev/null ; then
 		org.mozilla.firefox # Firefox for internet
 		org.gimp.GIMP # Image editing :)
 		org.kicad.KiCad # CAD Editing
+		org.kde.isoimagewriter # ISO image writer!
 	)
 	"${CMD[@]}"
 fi
