@@ -1,7 +1,7 @@
 # Sway TODO
 
 Alternatively... do none of this and stick with KDE.
-* [Arch Wiki](wiki.archlinux.org/title/Sway)  
+* [Arch Wiki](https://wiki.archlinux.org/title/Sway)  
 * [Community Wiki](https://github.com/swaywm/sway/wiki)  
 * [Are we Wayland yet?](https://arewewaylandyet.com/)
 
