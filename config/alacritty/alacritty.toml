@@ -6,6 +6,12 @@ import = [
 	# "~/.config/alacritty/catppuccin-macchiato.toml"
 	 "~/.config/alacritty/catppuccin-mocha.toml"
 ]
+# And if on Windows: "C:/Users/${YOUR_USER_FOLDER}/AppData/Roaming/alacritty/catppuccin-mocha.toml"
+
+
+# If on Windows, you may want:
+# [terminal]
+# shell = { program = "C:/Program Files/PowerShell/7/pwsh.exe", args = [ "-WorkingDirectory C:/Users/${YOUR_USER_FOLDER}" ] }
 
 [window]
 #padding = {x = 15, y = 15}
@@ -15,6 +21,7 @@ TERM = "xterm-256color"
 
 [font]
 size = 7
+normal = { family = "Hack Nerd Font Mono" }
 
 
 [keyboard]
