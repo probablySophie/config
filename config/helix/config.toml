@@ -76,6 +76,10 @@ g = {f = ["goto_file", ":redraw"], x = ["goto_file", ":redraw"]}
 # Toggle whitespace
 space.x.w = ":toggle whitespace.render all none"
 space.x.f = [":update", ":sh bunx prettier %{buffer_name} --write", ":reload"]
+# Git commit current file
+# TODO: If commit unsuccessful - undo git add
+# TODO: If current file doesn't actually have changes, do nothing
+space.x.g = ":sh tmux display-popup -xC -yC -w90%% -h90%% -d \"$PWD\" -E \"git add %{buffer_name} && git commit\""
 
 space.t.s = ":tree-sitter-scopes"
 space.t.h = ":tree-sitter-highlight-name"
