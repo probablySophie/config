@@ -15,12 +15,12 @@ export TMUX_TMPDIR='/tmp'
 # WSL doesn't properly report directories ._.
 tmux set-option -g default-terminal 'xterm-256color'
 
+# Make notify-send still work
 function notify
 {
 	if [[ $1 == $null ]]; then return; fi
 	pwsh.exe -Command "(New-Object -ComObject Wscript.Shell).Popup(\"$1\")"
 }
-
 alias notify-send=notify
 alias pwsh="pwsh.exe"
 
