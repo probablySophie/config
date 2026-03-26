@@ -100,3 +100,4 @@ space.i.s = [":sh echo \"%{buffer_name}\" >> .helix/tabs.txt", ":buffer-close"]
 "\"" = "@ms\"" # With ""
 "'"  = "@ms'"  # With ''
 
+space.x.s = ":pipe sort"
