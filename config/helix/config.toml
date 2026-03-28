@@ -79,7 +79,7 @@ space.x.f = [":update", ":sh bunx prettier %{buffer_name} --write", ":reload"]
 # Git commit current file
 # TODO: If commit unsuccessful - undo git add
 # TODO: If current file doesn't actually have changes, do nothing
-space.x.g = ":sh tmux display-popup -xC -yC -w90%% -h90%% -d \"$PWD\" -E \"git add %{buffer_name} && git commit\""
+space.x.g = ":sh tmux display-popup -xC -yC -w90%% -h90%% -d \"$PWD\" -E \"git add %{buffer_name} && git commit %{buffer_name}\""
 
 space.t.s = ":tree-sitter-scopes"
 space.t.h = ":tree-sitter-highlight-name"
@@ -91,6 +91,8 @@ space.i.f = ":insert-output echo '---'; echo 'tags: []'; echo \"created: \\\"$(d
 space.i.r = [":sh bun run ~/Code/playground/markdown_notes/index.ts \"%{buffer_name}\"", ":reload"]
 # Saving a tab
 space.i.s = [":sh echo \"%{buffer_name}\" >> .helix/tabs.txt", ":buffer-close"]
+# Insert a link
+space.i.l = "@miWms[<right>i("
 
 [keys.select]
 # Surround selected text!
