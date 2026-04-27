@@ -108,6 +108,13 @@ language-servers = [ "marksman", "codebook", "scls" ]
 indent = { tab-width = 4, unit = "\t" }
 comment-tokens = [ "-", "+", "*", "* [ ]", ">", "- [ ]" ]
 
+[[language]]
+name = "markdoc"
+language-servers = [ "marksman", "codebook", "scls" ]
+indent = { tab-width = 4, unit = "\t" }
+comment-tokens = [ "-", "+", "*", "* [ ]", ">", "- [ ]" ]
+file-types = [ "mdoc" ]
+
 # Spell checking
 # https://github.com/blopker/codebook
 [language-server.codebook]
