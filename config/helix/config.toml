@@ -102,4 +102,11 @@ space.i.l = "@miWms[<right>i("
 "\"" = "@ms\"" # With ""
 "'"  = "@ms'"  # With ''
 
+# *********************************
+# Executing things (in select mode)
+# *********************************
+
+# Sorting the selection
 space.x.s = ":pipe sort"
+# Opening the selection in a wikipedia search
+space.x.w = ":sh xdg-open \"https://wikipedia.org/w/index.php?search=%{selection}\""
