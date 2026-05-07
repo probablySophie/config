@@ -54,7 +54,6 @@ C-left = "goto_previous_buffer"    # Ctrl-left  prev_buffer
 C-right = "goto_next_buffer"       # Ctrl-right next_buffer
 A-h = "signature_help"
 C-z = "undo"                       # Ctrl-z     Undo
-#C-l = [":new", ":insert-output nap", ":redraw"]
 
 [keys.normal]
 C-s = ":w"                         # Ctrl-S     Save
@@ -65,34 +64,42 @@ S-w = ":buffer-close"              # Shift-W    Close Buffer
 r = "redo"                         # R          redo
 # Space K does this
 S-k = "hover"                      # Shift-K    LSP Hover
-# space-a does code actions
-# S-l = "code_action"                # Shift-L    LSP Code Actions
-# space-r renames
-# S-r = "rename_symbol"              # Shift-R    LSP Rename
 S-h = "signature_help"
 C-r = [":reload-all", ":sh printf 'Reloaded'"]
 g = {f = ["goto_file", ":redraw"], x = ["goto_file", ":redraw"]}
-
-# Toggle whitespace
-space.x.w = ":toggle whitespace.render all none"
-space.x.f = [":update", ":sh bunx prettier %{buffer_name} --write", ":reload"]
-# Git commit current file
-# TODO: If commit unsuccessful - undo git add
-# TODO: If current file doesn't actually have changes, do nothing
-space.x.g = ":sh tmux display-popup -xC -yC -w90%% -h90%% -d \"$PWD\" -E \"git add %{buffer_name} && git commit %{buffer_name}\""
 
 space.t.s = ":tree-sitter-scopes"
 space.t.h = ":tree-sitter-highlight-name"
 space.t.t = ":tree-sitter-subtree"
 
-# Inserting markdown stuff
-space.i.d = ':insert-output date +"%%Y-%%m-%%d"'
-space.i.f = ":insert-output echo '---'; echo 'tags: []'; echo \"created: \\\"$(date +'%%Y-%%m-%%d')\\\"\"; echo 'name: \"\"' ; echo '# References:' ; echo '---'"
-space.i.r = [":sh bun run ~/Code/playground/markdown_notes/index.ts \"%{buffer_name}\"", ":reload"]
+[keys.normal.space.i]
+
+# Today's date
+d = ':insert-output date +"%%Y-%%m-%%d"'
+# Markdown frontmatter
+f = ":insert-output echo '---'; echo 'tags: []'; echo \"created: \\\"$(date +'%%Y-%%m-%%d')\\\"\"; echo 'name: \"\"' ; echo '# References:' ; echo '---'; echo ''"
+r = [":sh bun run ~/Code/playground/markdown_notes/index.ts \"%{buffer_name}\"", ":reload"]
 # Saving a tab
-space.i.s = [":sh echo \"%{buffer_name}\" >> .helix/tabs.txt", ":buffer-close"]
+s = [":sh echo \"%{buffer_name}\" >> .helix/tabs.txt", ":buffer-close"]
 # Insert a link
-space.i.l = "@miWms[<right>i("
+l = "@miWms[<right>i("
+
+
+# *********************************
+# Executing things (in normal mode)
+# *********************************
+[keys.normal.space.x]
+
+# Opening the selection in a wikipedia search
+w = ":sh xdg-open \"https://wikipedia.org/w/index.php?search=%{selection}\""
+# Prettify the current file
+f = [":update", ":sh bunx prettier %{buffer_name} --write", ":reload"]
+
+# Git commit current file
+# TODO: If commit unsuccessful - undo git add
+# TODO: If current file doesn't actually have changes, do nothing
+g = ":sh tmux display-popup -xC -yC -w90%% -h90%% -d \"$PWD\" -E \"git add %{buffer_name} && git commit %{buffer_name}\""
+
 
 [keys.select]
 # Surround selected text!
@@ -105,8 +112,10 @@ space.i.l = "@miWms[<right>i("
 # *********************************
 # Executing things (in select mode)
 # *********************************
+[keys.select.space.x]
 
 # Sorting the selection
-space.x.s = ":pipe sort"
+s = ":pipe sort"
 # Opening the selection in a wikipedia search
-space.x.w = ":sh xdg-open \"https://wikipedia.org/w/index.php?search=%{selection}\""
+w = ":sh xdg-open \"https://wikipedia.org/w/index.php?search=%{selection}\""
+
