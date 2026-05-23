@@ -18,3 +18,8 @@ prefix = "switch (match)"
 scope = ["rust"]
 body = "match $1 {\n\t// Ok(v) => { },\n\n}"
 description = "A reminder that rust uses match instead of switch/case"
+
+[[snippets]]
+prefix = "map_err"
+scope = [ "rust" ]
+body = ".map_err( |e| e.to_string() )"

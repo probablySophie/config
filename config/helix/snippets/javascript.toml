@@ -1,4 +1,18 @@
 [[snippets]]
+prefix = "await"
+scope = [ "javascript", "javascriptreact", "typescript", "typescriptreact" ]
+body="await new Promise(r => setTimeout(r, 1000));"
+
+[[snippets]]
 prefix = "sleep"
 scope = [ "javascript", "javascriptreact", "typescript", "typescriptreact" ]
 body="await new Promise(r => setTimeout(r, 1000));"
+
+[[snippets]]
+prefix = "readystate"
+scope = [ "javascript", "javascriptreact", "typescript", "typescriptreact" ]
+body="""if (document.readyState === "loading") {
+	document.addEventListener( "DOMContentLoaded", _ => { $1 } )
+} else {
+	$1
+}"""
