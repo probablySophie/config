@@ -137,7 +137,7 @@ indent = { tab-width = 4, unit = "\t" }
 
 [[language]]
 name = "html"
-language-servers = ["vscode-html-language-server"] # vscode-langservers-extracted
+language-servers = ["vscode-html-language-server", "scls"] # vscode-langservers-extracted
 indent = { tab-width = 4, unit = "\t" }
 file-types = [ "hbs", "html", "htm" ]
 auto-format = false

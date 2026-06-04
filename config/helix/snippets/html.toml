@@ -1,0 +1,11 @@
+[[snippets]]
+prefix = "DOCTYPE"
+scope = ["HTML"]
+body = """<!DOCTYPE html>\n<html>\n	<head>\n		<meta charset="utf-8">\n		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">\n		<title>Page</title>\n	</head>\n	<body>\n		<header></header>\n		\n		<main>\n			<h1>Hello World!</h1>\n		</main>\n		<footer></footer>\n	</body>\n</html>"""
+description = "Basic HTML Page"
+
+[[snippets]]
+prefix = "style"
+scope = ["HTML"]
+body = """<style>\n:root { color-scheme: light dark; }\nhtml>body { display: grid; min-height: 100vh; grid-template-columns: min-content 1fr min-content; padding: 0px; margin: 0px; }\n</style>"""
+description = "Super basic page styling"
