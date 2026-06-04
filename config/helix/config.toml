@@ -37,9 +37,10 @@ display-messages = true     # Displays LSP config & log messages
 display-inlay-hints = false
 
 [editor.statusline]
-left = ["mode", "spinner", "file-name", "file-modification-indicator", "version-control"]
-center = ["read-only-indicator"]
-right = ["diagnostics", "position", "position-percentage", "file-encoding"]
+left = ["mode", "spinner", "file-name", "file-modification-indicator" ]
+# center = ["read-only-indicator"]
+center = [ "diagnostics" ]
+right = [ "position", "position-percentage", "file-encoding", "file-type"]
 
 
 #
