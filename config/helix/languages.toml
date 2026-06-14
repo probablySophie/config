@@ -6,6 +6,12 @@
 # https://docs.helix-editor.com/languages.html
 
 [[language]]
+name = "c"
+indent = { tab-width = 4, unit = "\t" }
+file-types = [ "c", "h" ]
+roots = [".clangd"]
+
+[[language]]
 name = "rust"
 formatter = { command = "rustfmt" }
 auto-format = false
