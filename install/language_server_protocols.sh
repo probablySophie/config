@@ -14,3 +14,6 @@ GLOBAL_INSTALLS=(
 	pyright 
 );
 "${GLOBAL_INSTALLS[@]}"
+
+# SCLS Snippet language server
+cargo install --locked --git https://github.com/estin/simple-completion-language-server.git
