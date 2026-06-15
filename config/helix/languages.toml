@@ -171,6 +171,7 @@ file-types = ["js", "mjs"]
 language-servers = ["typescript-language-server", "scls"]
 indent = { tab-width = 4, unit = "\t" }
 
+# https://docs.deno.com/runtime/getting_started/setup_your_environment/#helix
 [[language]]
 name = "typescript"
 roots = ["deno.json", "deno.jsonc", "package.json", "package.jsonc"]
