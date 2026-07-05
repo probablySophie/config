@@ -60,7 +60,9 @@ C-z = "undo"                       # Ctrl-z     Undo
 C-s = ":w"                         # Ctrl-S     Save
 C-o = "file_picker"                # Ctrl-O     Open another file
 C-left = "goto_previous_buffer"    # Ctrl-left  prev_buffer
+S-left = "goto_previous_buffer"
 C-right = "goto_next_buffer"       # Ctrl-right next_buffer
+S-right = "goto_next_buffer"
 S-w = ":buffer-close"              # Shift-W    Close Buffer
 r = "redo"                         # R          redo
 # Space K does this
