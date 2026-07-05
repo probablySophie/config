@@ -16,3 +16,26 @@ body="""if (document.readyState === "loading") {
 } else {
 	$1
 }"""
+
+[[snippets]]
+prefix = "customelement"
+scope = [ "javascript", "typescript" ]
+body="""const elm_name = "example-element";
+export default class CustomElm extends HTMLElement
+{
+	constructor() { super(); }
+	connectedCallback() {
+		if ( document.readyState != "loading" ) { this.document_loaded() }
+		else { document.addEventListener( "DOMContentLoaded", _ => { this.document_loaded() } ) }
+	}
+	disconnectedCallback() {}
+
+	static get observedAttributes() { return [ ] }
+	attributeChangedCallback(attribute, from, to) {}
+
+	document_loaded() {}
+}
+
+if ( customElements.get( elm_name ) == null ) {
+	customElements.define( elm_name, CustomElm );
+}"""

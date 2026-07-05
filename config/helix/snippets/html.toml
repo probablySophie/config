@@ -7,5 +7,9 @@ description = "Basic HTML Page"
 [[snippets]]
 prefix = "style"
 scope = ["HTML"]
-body = """<style>\n:root { color-scheme: light dark; }\nhtml>body { display: grid; min-height: 100vh; grid-template-columns: min-content 1fr min-content; padding: 0px; margin: 0px; }\n</style>"""
+body = """<style>
+:root { color-scheme: light dark; }
+html>body { display: grid; min-height: 100vh; grid-template-columns: min-content 1fr min-content; padding: 0px; margin: 0px; }
+details > summary { cursor: pointer; }
+</style>"""
 description = "Super basic page styling"

@@ -12,5 +12,13 @@ description = "log at debug level"
 
 # TODO: JSDoc commetns
 
+
 [[snippets]]
-prefix = ""
+prefix = "await"
+scope = [ "javascript", "javascriptreact", "typescript", "typescriptreact" ]
+body="await new Promise(r => setTimeout(r, 1000));"
+
+[[snippets]]
+prefix = "sleep"
+scope = [ "javascript", "javascriptreact", "typescript", "typescriptreact" ]
+body="await new Promise(r => setTimeout(r, 1000));"
