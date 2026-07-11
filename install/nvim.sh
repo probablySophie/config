@@ -5,18 +5,42 @@ LATEST="https://github.com/neovim/neovim/releases/latest/download/$FILE.tar.gz"
 
 SAVE_TO="$HOME/Downloads/nvim.tar.gz";
 
-# TODO: Prompt the user for nightly or latest
+# INFO: Prompt the user for nightly or latest
 
-# curl -L "$NIGHTLY" -o "$SAVE_TO";
-# tar -xf "$SAVE_TO" -C "$HOME/Downloads/"
+printf "Would you like nightly or latest? (n/L)\n";
+C HOICE="";
+read -p "> " CHOICE;
+CHOICE="$( printf "%s" "$CHOICE" | tr '[:upper:]' '[:lower:]' )";
 
-cp -r "$HOME/Downloads/$FILE"/* "$HOME/.local"
-# FOLDERS=( "bin" "lib" "share" )
-# for FOLDER in "${FOLDERS[@]}"; do
-# 	# printf "$FOLDER\n";
-# 	mkdir -p "$HOME/.local/$FOLDER"
+VER=$LATEST;
+if [[ "$(printf "%.1s" "$CHOICE")" == 'n' ]]; then
+	printf "Downloading nightly\n";
+	VER=$NIGHTLY;
+else
+	printf "Downloading latest\n";
+fi
 
-# done 
+# INFO: The actual download
+
+curl -L "$VER" -o "$SAVE_TO";
+tar -xf "$SAVE_TO" -C "$HOME/Downloads/"
+
+for filepath in "$HOME/Downloads/$FILE"/*; do
+	filename="$( printf "%s" "${filepath##*/}" )";
+	# Is that a directory?
+	if [[ -d "$filepath" ]]; then
+		# Is there a ~/.local version?
+		if [[ -d "$HOME/.local/$filename" ]]; then
+			printf "Copying $filename into ~/.local\n";
+			cp -r "$filepath"/* "$HOME/.local/$filename";
+		else
+			printf "ignoring $filename as there isn't a ~/.local version\n";
+		fi
+	else
+		printf "ignoring $filename as it isn't a directory\n";
+	fi
+done
+
 
 # TODO: Ask user if they want to clean up downloads folder
 
