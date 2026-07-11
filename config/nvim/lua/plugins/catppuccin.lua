@@ -1,6 +1,14 @@
 -- Catppuccin Colour Scheme
 -- https://github.com/catppuccin/nvim
 
+require("catppuccin").setup({
+	integrations = {
+		mini = {
+			enabled = true
+		}
+	},
+});
+
 --[[require("catppuccin").setup({
 	color_overrides = { mocha = {
 		base = "#11111b",

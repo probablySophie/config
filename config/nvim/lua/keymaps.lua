@@ -25,7 +25,7 @@ vim.keymap.set({ 'n' }, 'u', action( vim.cmd.undo ), { desc = 'Undo' });
 
 
 --
--- Navigation
+-- Document Navigation
 --
 
 vim.keymap.set({'v', 'n'}, 'ge', '::$<CR>', { desc = 'Goto end of document' });
@@ -36,12 +36,21 @@ vim.keymap.set('n', '<down>', 'gj', { desc = 'Goto the next line (respecting vir
 vim.keymap.set('n', '<up>', 'gk', { desc = 'Goto the previous line (respecting virtual lines)' });
 
 --
--- Tabs
+-- Buffer Navigation
+--
+vim.keymap.set({ 'n' }, '<C-left>', action_and_redraw( vim.cmd.bp ), { desc = 'Previous Buffer' });
+vim.keymap.set({ 'n' }, '<C-right>', action_and_redraw( vim.cmd.bn ), { desc = 'Previous Buffer' });
+-- TODO: How do we bind Shift-left and Shift-right?
+
+vim.keymap.set({ 'n' }, 'W', ':bd<CR>', { desc = 'Close Buffer' });
+
+--
+-- Tab Navigation
 -- https://neovim.io/doc/user/tabpage.html
 --
-vim.keymap.set({ 'n' }, '<C-left>', action_and_redraw( vim.cmd.tabprev ), { desc = 'Previous Tab' });
-vim.keymap.set({ 'n' }, '<C-right>', action_and_redraw( vim.cmd.tabnext ), { desc = 'Next Tab' });
-vim.keymap.set({ 'n' }, 'W', ':q<CR>', { desc = 'Close Tab' });
+-- vim.keymap.set({ 'n' }, '<C-left>', action_and_redraw( vim.cmd.tabprev ), { desc = 'Previous Tab' });
+-- vim.keymap.set({ 'n' }, '<C-right>', action_and_redraw( vim.cmd.tabnext ), { desc = 'Next Tab' });
+-- vim.keymap.set({ 'n' }, 'W', ':q<CR>', { desc = 'Close Tab' });
 -- TODO: Only tab close if saved
 for i = 1,9 do vim.keymap.set({ 'n', 't' }, '<leader>w' .. i, '<Cmd>tabnext ' .. i .. '<CR>', { desc = 'Open Tab #' .. i } ); end
 
@@ -50,8 +59,21 @@ for i = 1,9 do vim.keymap.set({ 'n', 't' }, '<leader>w' .. i, '<Cmd>tabnext ' ..
 -- 
 -- Buffers
 -- 
-vim.keymap.set('n', '<A-left>', ':bprev<CR>:redraw<CR>', { desc = 'Previous Buffer' });
-vim.keymap.set('n', '<A-right>', ':bnext<CR>:redraw<CR>', { desc = 'Next Buffer' });
+-- vim.keymap.set('n', '<A-left>', ':bprev<CR>:redraw<CR>', { desc = 'Previous Buffer' });
+-- vim.keymap.set('n', '<A-right>', ':bnext<CR>:redraw<CR>', { desc = 'Next Buffer' });
+
+
+--
+-- Helix style selection stuff
+--
+
+-- Also see ./plugins/mini.lua for more 
+
+vim.keymap.set('v', 'x', 'V', { desc = 'Expand selection' });
+vim.keymap.set('n', 'mi', 'vi', { desc = 'Select within' });
+vim.keymap.set('n', 'ma', 'va', { desc = 'Select around' });
+
+-- TODO: Map Visual mode 's' to select within selection 
 
 --
 -- Folding
@@ -68,6 +90,9 @@ vim.keymap.set( 'n', '<Esc>', function()
 	vim.cmd('nohlsearch'); -- Clear highlights
 	KILL_EXTRAS();
 end )
+
+vim.keymap.set('n', '>', 'v>', { desc = 'Indent line' });
+vim.keymap.set('n', '<', 'v<', { desc = 'Unindent line' });
 
 --
 -- LSP Commands

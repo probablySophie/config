@@ -37,7 +37,7 @@ function KILL_EXTRAS()
 			) .. "\n";
 		end
 	end
-	if #strs > 0 then vim.print(strs); end
+	-- if #strs > 0 then vim.print(strs); end
 end
 
 

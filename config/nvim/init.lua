@@ -10,7 +10,7 @@ require ("autocmds"); -- Auto commands
 ]]
 
 --
--- Folds
+-- Foldsit isn't a director
 --
 
 vim.opt.foldmethod = "expr";
@@ -31,6 +31,5 @@ for name, icon in pairs(symbols) do
 	vim.fn.sign_define(hl, { text = icon, numhl = hl, texthl = hl })
 end
 
-vim.cmd.colorscheme "catppuccin-mocha"; -- colour-scheme
--- TODO: Darken the background colour
-
+-- See ./packs for where set the colour scheme.
+-- It its the last thing we do then our custom highlight grousp will ne reset 

@@ -1,0 +1,9 @@
+words = [
+	"keymap",
+	"tabline",
+	"trunc",
+]
+
+ignorepatterns = [
+	'vim\..*\..*'
+]

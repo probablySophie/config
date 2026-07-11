@@ -9,8 +9,10 @@ vim.pack.add({
 	{ src = 'https://github.com/catppuccin/nvim' }, -- Colour Scheme,
 	{ src = 'https://github.com/folke/which-key.nvim' },
 	{ src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim' }, -- Markdown rendering
+	{ src = 'https://github.com/nvim-mini/mini.nvim' }, -- Just a million tiny guys
 });
 
+vim.cmd.colorscheme "catppuccin-mocha"; -- colour-scheme
 -- 
 -- Package Config
 --
@@ -20,3 +22,4 @@ vim.pack.add({
 -- require "plugins.catppuccin";
 require "plugins.whichkey";
 require "plugins.rendermarkdown";
+require "plugins.mini";
