@@ -3,7 +3,12 @@
 prefix = "component"
 scope = [ "typescriptreact" ]
 body="""
-interface $1Props {}
+interface $1Props {
+	children?: ComponentChildren,
+	id?: string,
+	class?: string,
+	style?: string
+}
 interface $1State {}
 
 class $1 extends Component<$1Props, $1State>
@@ -20,8 +25,8 @@ class $1 extends Component<$1Props, $1State>
 
 	render()
 	{
-		return <div>
-
+		return <div id={this.props.id} class={this.props.class} style={this.props.style}>
+			{ this.props.children }
 		</div>
 	}	
 }"""
@@ -31,12 +36,17 @@ description = "A preact Class Component"
 prefix = "function_component"
 scope = [ "typescriptreact" ]
 body="""
-interface $1Props {}
+interface $1Props {
+	children?: ComponentChildren,
+	id?: string,
+	class?: string,
+	style?: string
+}
 
 function $1(props: $1Props)
 {
-	return <div>
-
+	return <div id={this.props.id} class={this.props.class} style={this.props.style}>
+		{ props.children }
 	</div>
 }
 """
