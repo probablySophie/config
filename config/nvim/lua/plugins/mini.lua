@@ -143,3 +143,13 @@ require('mini.completion').setup();
 -- 	use_icons = true
 -- });
 
+-- INFO: https://nvim-mini.org/mini.nvim/doc/mini-hipatterns.html#minihipatterns-examples
+require('mini.hipatterns').setup({
+	highlighters = {
+		fixme = { pattern = 'FIXME', group = 'MiniHipatternsFixme' },
+		hack = { pattern = 'HACK', group = 'MiniHipatternsHack' },
+		todo = { pattern = 'TODO', group = 'MiniHipatternsTodo' },
+		note = { pattern = 'NOTE', group = 'MiniHipatternsNote' },
+		info = { pattern = 'INFO', group = 'MiniHipatternsTodo' },
+	},
+});

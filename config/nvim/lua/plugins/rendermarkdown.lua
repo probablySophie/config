@@ -6,4 +6,9 @@ require('render-markdown').setup({
 	anti_conceal = {
 		disabled_modes = { 'n', 'c' },
 	},
+
+	-- link = {
+	-- 	enabled = true,
+	--
+	-- },
 });
