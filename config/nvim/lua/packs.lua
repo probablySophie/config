@@ -3,6 +3,8 @@
 -- https://neovim.io/doc/user/pack.html
 --
 
+-- INFO: You may also want ./lsps.lua
+
 vim.pack.add({
 	{ src = 'https://github.com/neovim/nvim-lspconfig' }, -- Basic LSP Configs
 	{ src = 'https://github.com/nvim-treesitter/nvim-treesitter' }, -- Treesitter integration

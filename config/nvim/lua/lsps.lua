@@ -2,6 +2,8 @@
 -- Configuring LSPs
 --
 
+-- INFO: You may also want ./packs.lua
+
 -- Auto complete :)
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(env)
