@@ -8,7 +8,7 @@ SAVE_TO="$HOME/Downloads/nvim.tar.gz";
 # INFO: Prompt the user for nightly or latest
 
 printf "Would you like nightly or latest? (n/L)\n";
-C HOICE="";
+CHOICE="";
 read -p "> " CHOICE;
 CHOICE="$( printf "%s" "$CHOICE" | tr '[:upper:]' '[:lower:]' )";
 
@@ -32,7 +32,7 @@ for filepath in "$HOME/Downloads/$FILE"/*; do
 		# Is there a ~/.local version?
 		if [[ -d "$HOME/.local/$filename" ]]; then
 			printf "Copying $filename into ~/.local\n";
-			cp -r "$filepath"/* "$HOME/.local/$filename";
+			cp -rf "$filepath"/* "$HOME/.local/$filename";
 		else
 			printf "ignoring $filename as there isn't a ~/.local version\n";
 		fi
