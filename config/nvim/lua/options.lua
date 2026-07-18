@@ -34,10 +34,6 @@ vim.o.cursorline = true; -- Highlight cursor line
 vim.o.list = true;
 vim.o.listchars = 'tab:│ ';
 
---[[
-MiniStatuslineModeCommand xxx cterm=bold gui=bold guifg=#1e1e2e guibg=#fab387              MiniStatuslineModeInsert xxx cterm=bold gui=bold guifg=#1e1e2e guibg=#a6e3a1               MiniStatuslineModeReplace xxx cterm=bold gui=bold guifg=#1e1e2e guibg=#f38ba8              MiniStatuslineModeVisual x
---]]
-
 local function highlighted( hl, text )
 	return string.format([[%%#%s#%s%%*]], hl, text);
 end
@@ -46,8 +42,12 @@ function _G._custom_status_line_mode()
 	local mode = vim.api.nvim_get_mode().mode;
 	local longer = {
 		['i'] = { hl = "MiniStatuslineModeInsert", text = " INS " },
+		['ic'] = { hl = "MiniStatuslineModeInsert", text = " INS " },
 		['n'] = { hl = "MiniStatuslineModeNormal", text = " NOR " },
 		['v'] = { hl = "MiniStatuslineModeVisual", text = " VIS " },
+		['V'] = { hl = "MiniStatuslineModeVisual", text = " VIS " },
+		['c'] = { hl = "MiniStatuslineModeCommand", text = " CMD " },
+		['t'] = { hl = "MiniStatuslineModeNormal", text = " TRM " },
 	};
 	local printable = mode;
 	if longer[mode] ~= nil then printable = highlighted(longer[mode].hl, longer[mode].text); end
@@ -55,6 +55,10 @@ function _G._custom_status_line_mode()
 end
 
 local function statusline()
+	-- TODO: Diagnostics?
+	-- levels = vim.diagnostic.severity;
+	-- See: https://www.reddit.com/r/neovim/comments/17hbep3/anyone_built_a_statusline_with_no_plugins/k6mrasn/
+
 	return (
 		-- ' %{mode()}' -- Current mode
 		' %{%v:lua._custom_status_line_mode()%}' -- File path
