@@ -2,6 +2,9 @@
 -- INFO: Vaguely following this tutorial
 -- https://elanmed.dev/blog/native-fzf-in-neovim
 
+-- INFO: The floating window API
+-- https://neovim.io/doc/user/api/#api-floatwin 
+
 function run_command_in_new_window( command, window_config, handle_output )
 	window_config = window_config or {
 		relative = 'editor', -- editor, cursor
