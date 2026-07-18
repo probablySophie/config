@@ -106,8 +106,16 @@ vim.keymap.set( 'n', '<leader>h', ':lua vim.lsp.buf.signature_help()<CR>', { des
 
 -- vim.keymap.set('i', '<C-space>', vim.lsp.buf.completion); -- Show completion options
 
--- TODO: <C-o> should open a yazi or fzf window & allow us to pick a file 
+-- TODO: Open wikipedia
+vim.keymap.set('v', '<leader>xw',
+	function()
+		local region = vim.fn.getregion( vim.fn.getpos("v"), vim.fn.getpos(".") );
+		vim.print(region);
+	end,
+	{ desc = '?' } );
+
 -- TODO: gf (goto file) should browser open URLs
+
 
 --
 -- Pickers
