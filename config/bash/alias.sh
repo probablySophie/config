@@ -2,6 +2,14 @@
 #	Custom Alias Files
 #
 
+if command -v hx &> /dev/null; then EDITOR="hx";
+elif command -v nvim &> /dev/null; then EDITOR="nvim";
+elif command -v vim &> /dev/null; then EDITOR="vim";
+elif command -v nano &> /dev/null; then EDITOR="nano";
+elif command -v vi &> /dev/null; then EDITOR="vi";
+fi
+if [[ "$EDITOR" != "" ]]; then alias e="$EDITOR"; fi
+
 # Create an alias that runs a specific file, but ONLY if the file exists
 # This is mostly for things like app images
 safealias_file() # safealias_file FILEPATH COMMAND
