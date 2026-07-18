@@ -144,6 +144,8 @@ require('mini.completion').setup();
 -- });
 
 -- INFO: https://nvim-mini.org/mini.nvim/doc/mini-hipatterns.html#minihipatterns-examples
+-- TODO: Only highlight if in comments?
+-- TODO: Possibly this friend? https://github.com/nvim-mini/mini.nvim/discussions/2031
 require('mini.hipatterns').setup({
 	highlighters = {
 		fixme = { pattern = 'FIXME', group = 'MiniHipatternsFixme' },
