@@ -5,7 +5,6 @@
 -- https://nvim-mini.org/mini.nvim/doc/mini-bracketed.html
 -- https://nvim-mini.org/mini.nvim/doc/mini-git.html (A full git client)
 -- https://nvim-mini.org/mini.nvim/doc/mini-input.html (Get user input)
--- https://nvim-mini.org/mini.nvim/doc/mini-sessions.html
 -- https://nvim-mini.org/mini.nvim/doc/mini-keymap.html
 -- https://nvim-mini.org/mini.nvim/doc/mini-snippets.html
 -- https://nvim-mini.org/mini.nvim/doc/mini-clue.html
@@ -154,4 +153,10 @@ require('mini.hipatterns').setup({
 		note = { pattern = 'NOTE', group = 'MiniHipatternsNote' },
 		info = { pattern = 'INFO', group = 'MiniHipatternsTodo' },
 	},
+});
+
+
+-- https://nvim-mini.org/mini.nvim/doc/mini-sessions.html
+require('mini.sessions').setup({
+
 });
