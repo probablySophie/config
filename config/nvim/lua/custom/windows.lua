@@ -5,6 +5,9 @@
 -- INFO: The floating window API
 -- https://neovim.io/doc/user/api/#api-floatwin 
 
+---@param command string
+---@param window_config table
+---@param handle_output function
 function run_command_in_new_window( command, window_config, handle_output )
 	window_config = window_config or {
 		relative = 'editor', -- editor, cursor
