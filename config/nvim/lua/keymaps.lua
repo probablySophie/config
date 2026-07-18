@@ -147,3 +147,38 @@ vim.keymap.set( 'n', '<C-o>',
 	{ desc = 'Open fzf file picker' }
 );
 
+vim.keymap.set( 'n', '<leader>/',
+	function()
+		local reload='reload:rg --column --color=always --no-heading --smart-case {q} || :';
+		local preview='bat --style=numbers --color=always --highlight-line {2} {1}';
+		run_command_in_new_window( (
+				"fzf --disabled --ansi"
+				.. " --bind 'start:" .. reload .. "'"
+				.. " --bind 'change:" .. reload .. "'"
+				.. " --delimiter :"
+				.. " --preview '" .. preview .. "'"
+				.. " --preview-window '+{2}+4/3,<80(up)'"
+			),
+			{
+				title = "Search inside files",
+				relative = "editor",
+				border = "rounded",
+			},
+			function(lines)
+				for _,line in ipairs(lines) do
+					-- ripgrep matches come in the form "{file_name}:{line_match}:yadayadayada"
+					local file_name = string.match( line, "^[^:]+" );
+					local goto_line = string.match( line, "^[^:]+:(%d+)" );
+					-- :edit +20 my_file.txt will open my_file.txt on line 20
+					vim.cmd( string.format(
+						[[edit %s%s]],
+						goto_line == nil and "" or string.format("+%s ", goto_line),
+						file_name or line
+						) );
+				end
+			end
+		);
+	end,
+	{ desc = "Search inside files" }
+);
+

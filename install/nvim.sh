@@ -1,7 +1,11 @@
 FILE="nvim-linux-x86_64";
 
 if command -v uname &> /dev/null; then
-	if [[ "$(uname -m)" == "aarch64" ]]; then FILE="nvim-linux-arm64"; fi
+	machine_info="$(uname -m)"
+	if [[ "$machine_info" == "aarch64" ]]; then FILE="nvim-linux-arm64";
+	elif [[ "$machine_info" == "x86_64" ]]; then FILE="nvim-linux-x86_64";
+	else printf "Unhandled machine name/type '$machine_info'\n";
+	fi
 fi
 
 NIGHTLY="https://github.com/neovim/neovim/releases/download/nightly/$FILE.tar.gz"
