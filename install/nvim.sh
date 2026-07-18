@@ -1,5 +1,9 @@
 FILE="nvim-linux-x86_64";
 
+if command -v uname &> /dev/null; then
+	if [[ "$(uname -m)" == "aarch64" ]]; then FILE="nvim-linux-arm64"; fi
+fi
+
 NIGHTLY="https://github.com/neovim/neovim/releases/download/nightly/$FILE.tar.gz"
 LATEST="https://github.com/neovim/neovim/releases/latest/download/$FILE.tar.gz"
 
