@@ -9,4 +9,6 @@ pkg install \
 	mandoc \
 	tmux \
 	lazygit \
+	ripgrep \
+	bat \
 	-y
