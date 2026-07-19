@@ -7,7 +7,7 @@ pkg install \
 	ncurses-utils \
 	gnupg \
 	nmap \
-	nvim \
+	neovim \
 	mandoc \
 	tmux \
 	lazygit \
