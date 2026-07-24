@@ -29,9 +29,11 @@ prefix = "mod"
 scope = [ "rust" ]
 body = "mod $1; // ./$1.rs"
 description = "Mod named"
+name = "Single File Module"
 
 [[snippets]]
 prefix = "mod"
 scope = [ "rust" ]
 body = "mod $1; // ./$1/mod.rs"
 description = "Mod folder"
+name = "Folder Module"
