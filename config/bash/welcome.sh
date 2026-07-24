@@ -6,6 +6,8 @@ plural() {
 	fi
 }
 
+# TODO: We need to [[ -f /proc/uptime ]] and if it doesn't exist do something else
+
 uptime=$(cat /proc/uptime | cut -d ' ' -f 1) # get the uptime
 uptime=${uptime%.*} # float -> int
 
