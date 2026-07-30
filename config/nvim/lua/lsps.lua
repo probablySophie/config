@@ -79,7 +79,10 @@ vim.diagnostic.config({ -- https://neovim.io/doc/user/diagnostic.html#vim.diagno
 	},
 })
 
-
+-- INFO: LSP Bits
+-- :help lspconfig-all - to see configs for LSPs
+-- :help lsp-defaults
+-- :checkhealth vim.lsp - show the status of active & configured LSPs
 
 -- Config for all LSPs
 -- https://neovim.io/doc/user/lsp.html#vim.lsp.config()
@@ -92,5 +95,12 @@ vim.lsp.config( '*', {
 vim.lsp.enable({
 	"lua_ls",
 	"codebook",
-	"marksman"
+	"marksman",
+	"tsserver",
+	-- "rust_analyzer"
+});
+vim.lsp.config("tsserver", {
+	cmd = { "typescript-language-server", "--stdio" },
+	filetypes = { "typescript", "typescriptreact" },
+	root_dir = vim.fs.root(0, { "package.json", ".git" }),
 });
