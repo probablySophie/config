@@ -15,6 +15,7 @@ vim.pack.add({
 });
 
 vim.cmd.colorscheme "catppuccin-mocha"; -- colour-scheme
+
 -- 
 -- Package Config
 --
