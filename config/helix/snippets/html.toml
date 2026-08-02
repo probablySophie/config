@@ -9,7 +9,7 @@ prefix = "style"
 scope = ["HTML"]
 body = """<style>
 :root { color-scheme: light dark; }
-html>body { display: grid; min-height: 100vh; grid-template-columns: min-content 1fr min-content; padding: 0px; margin: 0px; }
+html>body { display: grid; min-height: 100vh; grid-template-rows: min-content 1fr min-content; padding: 0px; margin: 0px; }
 details > summary { cursor: pointer; }
 </style>"""
 description = "Super basic page styling"
