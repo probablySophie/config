@@ -64,7 +64,7 @@ local function statusline()
 		' %{%v:lua._custom_status_line_mode()%}' -- File path
 		.. ' %f' -- File path
 		.. ' %r' -- ?
-		.. ' %m' -- ?
+		.. ' %m' -- Has there been any edits? (the little [+])
 		.. ' %=' -- Align right
 		.. ' %3l:%c ' -- Line num, char num
 		.. '%2p%% ' -- Percentage way through file
