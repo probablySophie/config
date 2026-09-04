@@ -47,6 +47,7 @@ function bulk_symlink
 
 bulk_symlink "$PWD/config" "$HOME/.config/"
 bulk_symlink "$PWD/local_share" "$HOME/.local/share/"
+bulk_symlink "$PWD/home" "$HOME"
 
 # Update ~/.bashrc to source our custom files if it doesn't already
 if [[ "$(grep -c 'include custom bash setup if it exists' ~/.bashrc)" == "0" ]]; then
