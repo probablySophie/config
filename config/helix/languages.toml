@@ -19,6 +19,12 @@ language-servers = [ "rust-analyzer", "scls" ]#, "harper-ls" ] # I think harper 
 indent = { tab-width = 4, unit = "\t" }
 roots = [ "Cargo.toml" ]
 
+# TODO: https://github.com/helix-editor/helix/wiki/Debugger-Configurations#configuration-for-rust
+# [language.debugger]
+# name = "lldb-vscode"
+# transport = "stdio"
+# command = "lldb"
+
 [language-server.rust-analyzer]
 command = "rust-analyzer"
 
@@ -146,7 +152,7 @@ indent = { tab-width = 4, unit = "\t" }
 name = "html"
 language-servers = ["vscode-html-language-server", "scls"] # vscode-langservers-extracted
 indent = { tab-width = 4, unit = "\t" }
-file-types = [ "hbs", "html", "htm" ]
+file-types = [ "hbs", "html", "htm", "html.hbs" ]
 auto-format = false
 
 [[language]]
