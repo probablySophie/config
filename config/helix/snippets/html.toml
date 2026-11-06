@@ -13,3 +13,15 @@ html>body { display: grid; min-height: 100vh; grid-template-rows: min-content 1f
 details > summary { cursor: pointer; }
 </style>"""
 description = "Super basic page styling"
+
+[[snippets]]
+prefix = "style"
+description = "Import a stylesheet"
+scope = ["HTML"]
+body = """<link href="" rel="stylesheet" />"""
+
+[[snippets]]
+prefix = "script"
+description = "Import a JS Script"
+scope=["HTML"]
+body="""<script type="module" src=""></script>"""
