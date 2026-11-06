@@ -10,6 +10,14 @@ elif command -v vi &> /dev/null; then EDITOR="vi";
 fi
 if [[ "$EDITOR" != "" ]]; then alias e="$EDITOR"; fi
 
+# TODO: We want to split the files so we don't end up editing one file with a mega combined path of doom
+if command -v fd &> /dev/null; then
+	function edit-find { $EDITOR "$( fd "$1" )"; }
+elif command -v find &> /dev/null; then
+	function edit-find { $EDITOR "$( find . -iname "*$1*" )"; }
+fi
+alias ef="edit-find";
+
 # Create an alias that runs a specific file, but ONLY if the file exists
 # This is mostly for things like app images
 safealias_file() # safealias_file FILEPATH COMMAND

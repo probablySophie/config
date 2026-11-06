@@ -33,7 +33,6 @@ reverse="\033[7m" # Reversing the foreground & background colours
 
 normal=$(tput sgr0)
 
-
 rainbow() {
 	printf " ${red}${1}"
 	printf "${orange}${1}"
