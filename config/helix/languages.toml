@@ -150,7 +150,7 @@ indent = { tab-width = 4, unit = "\t" }
 
 [[language]]
 name = "html"
-language-servers = ["vscode-html-language-server", "scls"] # vscode-langservers-extracted
+language-servers = ["vscode-html-language-server", "scls", "codebook"] # vscode-langservers-extracted
 indent = { tab-width = 4, unit = "\t" }
 file-types = [ "hbs", "html", "htm", "html.hbs" ]
 auto-format = false
@@ -240,7 +240,7 @@ environment = "node"
 name = "astro"
 roots = ["package.json", "astro.config.mjs"]
 indent = { tab-width = 4, unit = "\t" }
-language-servers = [ "astro-ls", "scls" ]
+language-servers = [ "astro-ls", "scls", "codebook" ]
 # language-server = {command = "astro-ls", args = [ "--stdio" ]}
 # config = { "typescript" = { "tsdk" = "/home/sophie/.bun/bin/tsserver" }, "environment" = "node" }
 
