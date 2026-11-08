@@ -12,7 +12,7 @@ if [[ "$EDITOR" != "" ]]; then alias e="$EDITOR"; fi
 
 # TODO: We want to split the files so we don't end up editing one file with a mega combined path of doom
 if command -v fd &> /dev/null; then
-	function edit-find { $EDITOR "$( fd "$1" )"; }
+	function edit-find { fd "$1" | sed -e 's/ /\\ /g' -e 's/&/\\&/g' -e 's/(/\\(/g' -e 's/)/\\)/g' -e 's/\x0//g' | xargs -d '\n' --no-run-if-empty -o ${EDITOR}; }
 elif command -v find &> /dev/null; then
 	function edit-find { $EDITOR "$( find . -iname "*$1*" )"; }
 fi
