@@ -25,3 +25,11 @@ prefix = "script"
 description = "Import a JS Script"
 scope=["HTML"]
 body="""<script type="module" src=""></script>"""
+
+[[snippets]]
+prefix = "DOMContentLoaded"
+description = "On DOM Content loaded"
+scope=["JavaScript"]
+body="""function dom_loaded() {}
+if ( document.readyState == "loading" ) { document.addEventListener("DOMContentLoaded", dom_loaded) }
+else { dom_loaded() }"""
