@@ -3,6 +3,7 @@ dictionaries = [
     "en_us",
 ]
 words = [
+    "Zypper",
     "actioned",
     "astro",
     "automations",
