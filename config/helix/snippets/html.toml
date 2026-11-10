@@ -1,7 +1,7 @@
 [[snippets]]
 prefix = "DOCTYPE"
 scope = ["HTML"]
-body = """<!DOCTYPE html>\n<html>\n	<head>\n		<meta charset="utf-8">\n		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">\n		<title>Page</title>\n	</head>\n	<body>\n		<header></header>\n		\n		<main>\n			<h1>Hello World!</h1>\n		</main>\n		<footer></footer>\n	</body>\n</html>"""
+body = """<!DOCTYPE html>\n<html>\n	<head>\n		<meta charset="utf-8">\n		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">\n		<meta name="color-scheme" content="light dark">\n		<title>Page</title>\n	</head>\n	<body>\n		<header></header>\n		\n		<main>\n			<h1>Hello World!</h1>\n		</main>\n		<footer></footer>\n	</body>\n</html>"""
 description = "Basic HTML Page"
 
 [[snippets]]
